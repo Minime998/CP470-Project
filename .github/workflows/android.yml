@@ -20,4 +20,4 @@ jobs:
       - name: Set JAVA_HOME
         run: echo "JAVA_HOME=/opt/hostedtoolcache/Java_Adopt_jdk/17.0.13-11/x64" >> $GITHUB_ENV
       - name: Build with Gradle
-        run: cd app && ./gradlew build
+        run: cd CP470-Project && ./gradlew build
