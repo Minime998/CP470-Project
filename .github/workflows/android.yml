@@ -17,6 +17,9 @@ jobs:
           distribution: 'adopt'  # or 'zulu', 'temurin', etc.
           java-package: 'jdk'
           architecture: 'x64'
+  
+      - name: Init gradle
+        run: gradle init
 
       - name: Init gradle wrapper
         run: gradle wrapper
