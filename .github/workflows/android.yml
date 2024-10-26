@@ -19,7 +19,5 @@ jobs:
           architecture: 'x64'
       - name: Set JAVA_HOME
         run: echo "JAVA_HOME=/opt/hostedtoolcache/Java_Adopt_jdk/17.0.13-11/x64" >> $GITHUB_ENV
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
       - name: Build with Gradle
         run: ./gradlew build
