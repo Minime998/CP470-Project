@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="black_matte">#303030</color>
+    <color name="blue">#1269cc</color>
+    <color name="blue_dark">#122578</color>
+    <color name="blue_light">#6d9ac7</color>
+    <color name="blue_sky">#51eefc</color>
+    <color name="grey_dark">#606470</color>
+    <color name="grey_light">#EDEDED</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="app_name">CamLingo</string>
+    <style name="Base.Theme.CamLingo" parent="Theme.Material3.DayNight.NoActionBar">
+        
+        
+    </style>
+    <style name="Theme.CamLingo" parent="Base.Theme.CamLingo"/>
+</resources>

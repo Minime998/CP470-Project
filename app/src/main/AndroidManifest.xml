@@ -12,20 +12,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CamLingo"
         tools:targetApi="31">
-
+        <activity
+            android:name=".DailyQuestActivity"
+            android:exported="false" />
+        <activity
+            android:name=".QuestsActivity"
+            android:exported="false" />
         <activity
             android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".MainActivity"
             android:exported="true" />
-
     </application>
 
 </manifest>
