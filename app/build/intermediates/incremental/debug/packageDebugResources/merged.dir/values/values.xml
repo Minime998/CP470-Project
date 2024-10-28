@@ -6,6 +6,7 @@
     <color name="blue_dark">#122578</color>
     <color name="blue_light">#6d9ac7</color>
     <color name="blue_sky">#51eefc</color>
+    <color name="green">#4CAF50</color>
     <color name="grey_dark">#606470</color>
     <color name="grey_light">#EDEDED</color>
     <color name="white">#FFFFFFFF</color>
@@ -14,14 +15,19 @@
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="app_name">CamLingo</string>
+    <string name="audio_questions">What do you hear?</string>
+    <string name="check_answer">Check</string>
     <string name="claim_now">Claim now</string>
     <string name="daily_quest_guide">Complete quests to earn rewards!</string>
+    <string name="got_it">Got it</string>
+    <string name="images_questions">What do you see?</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="invalid_username">Not a valid username</string>
     <string name="login_failed">"Login failed"</string>
     <string name="login_rewards">Login rewards</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
+    <string name="start_quest">Start</string>
     <string name="streak">Streak</string>
     <string name="todays_quest">Today\'s Quest</string>
     <string name="welcome">"Welcome!"</string>

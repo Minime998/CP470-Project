@@ -1427,6 +1427,7 @@ color error_color_material_dark
 color error_color_material_light
 color foreground_material_dark
 color foreground_material_light
+color green
 color grey_dark
 color grey_light
 color highlighted_text_material_dark
@@ -3105,6 +3106,7 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable speaker_filled_audio_tool
 drawable streak_icon
 drawable test_level_drawable
 drawable tooltip_frame_dark
@@ -3224,6 +3226,7 @@ id center_vertical
 id chain
 id chain2
 id chains
+id checkAnsBtn
 id checkbox
 id checked
 id chronometer
@@ -3451,6 +3454,10 @@ id open_search_view_search_prefix
 id open_search_view_status_bar_spacer
 id open_search_view_toolbar
 id open_search_view_toolbar_container
+id option1
+id option2
+id option3
+id option4
 id outline
 id outward
 id overshoot
@@ -3472,6 +3479,7 @@ id postLayout
 id pressed
 id progress_circular
 id progress_horizontal
+id question_img
 id radio
 id ratio
 id rectangles
@@ -3804,6 +3812,8 @@ layout mtrl_picker_text_input_date
 layout mtrl_picker_text_input_date_range
 layout mtrl_search_bar
 layout mtrl_search_view
+layout multiple_choice_audio
+layout multiple_choice_images
 layout notification_action
 layout notification_action_tombstone
 layout notification_template_custom_big
@@ -3849,6 +3859,7 @@ string action_sign_in_short
 string androidx_startup
 string app_name
 string appbar_scrolling_view_behavior
+string audio_questions
 string bottom_sheet_behavior
 string bottomsheet_action_collapse
 string bottomsheet_action_expand
@@ -3865,6 +3876,7 @@ string call_notification_screening_text
 string character_counter_content_description
 string character_counter_overflowed_content_description
 string character_counter_pattern
+string check_answer
 string claim_now
 string clear_text_end_icon_content_description
 string daily_quest_guide
@@ -3873,8 +3885,10 @@ string error_icon_content_description
 string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
+string got_it
 string hide_bottom_view_on_scroll_behavior
 string icon_content_description
+string images_questions
 string invalid_password
 string invalid_username
 string item_view_role_description
@@ -3993,6 +4007,7 @@ string searchview_clear_text_content_description
 string searchview_navigation_content_description
 string side_sheet_accessibility_pane_title
 string side_sheet_behavior
+string start_quest
 string status_bar_notification_info_overflow
 string streak
 string todays_quest

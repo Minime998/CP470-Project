@@ -16,5 +16,8 @@
     <string name="claim_now">Claim now</string>
     <string name="streak">Streak</string>
     <string name="images_questions">What do you see?</string>
-    <string name="start_quesst">Start</string>
+    <string name="audio_questions">What do you hear?</string>
+    <string name="start_quest">Start</string>
+    <string name="check_answer">Check</string>
+    <string name="got_it">Got it</string>
 </resources>

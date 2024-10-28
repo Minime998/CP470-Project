@@ -38,10 +38,10 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_marginEnd="14dp"
-            android:backgroundTint="@color/blue_dark"
+            android:backgroundTint="@color/grey_dark"
             app:cornerRadius="5dp"
             android:text="Smoke"
-             />
+            />
 
         <Button
             android:id="@+id/option2"
@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
-            android:backgroundTint="@color/blue_dark"
+            android:backgroundTint="@color/grey_dark"
             app:cornerRadius="5dp"
             android:text="Fire"/>
 
@@ -60,7 +60,7 @@
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_marginEnd="14dp"
-            android:backgroundTint="@color/blue_dark"
+            android:backgroundTint="@color/grey_dark"
             app:cornerRadius="5dp"
             android:text="Basketball"/>
 
@@ -70,12 +70,21 @@
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
-            android:backgroundTint="@color/blue_dark"
+            android:backgroundTint="@color/grey_dark"
             app:cornerRadius="5dp"
             android:text="Candle"/>
 
-
     </GridLayout>
+
+    <Button
+        android:id="@+id/checkAnsBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_gravity="fill"
+        android:backgroundTint="@color/green"
+        app:cornerRadius="5dp"
+        android:text="@string/check_answer"/>
 
 
 </LinearLayout>

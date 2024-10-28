@@ -48,8 +48,16 @@
         "source": "com.example.camlingo.app-main-36:/mipmap-xxxhdpi/ic_launcher.webp"
     },
     {
+        "merged": "com.example.camlingo.app-debug-34:/layout_multiple_choice_images.xml.flat",
+        "source": "com.example.camlingo.app-main-36:/layout/multiple_choice_images.xml"
+    },
+    {
         "merged": "com.example.camlingo.app-debug-34:/font_rodin.otf.flat",
         "source": "com.example.camlingo.app-main-36:/font/rodin.otf"
+    },
+    {
+        "merged": "com.example.camlingo.app-debug-34:/drawable_speaker_filled_audio_tool.xml.flat",
+        "source": "com.example.camlingo.app-main-36:/drawable/speaker_filled_audio_tool.xml"
     },
     {
         "merged": "com.example.camlingo.app-debug-34:/layout_activity_daily_quest.xml.flat",
@@ -82,6 +90,10 @@
     {
         "merged": "com.example.camlingo.app-debug-34:/mipmap-anydpi-v26_ic_launcher.xml.flat",
         "source": "com.example.camlingo.app-main-36:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.example.camlingo.app-debug-34:/layout_multiple_choice_audio.xml.flat",
+        "source": "com.example.camlingo.app-main-36:/layout/multiple_choice_audio.xml"
     },
     {
         "merged": "com.example.camlingo.app-debug-34:/drawable_ic_launcher_background.xml.flat",
