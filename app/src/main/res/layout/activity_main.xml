@@ -13,10 +13,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/toolbar"
+        app:title=""
+        app:titleMargin="10dp"
         android:background="@color/blue_dark"
         app:logo="@drawable/baseline_person_24_white"
-        app:title="Welcome"
-        app:titleMargin="10dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
