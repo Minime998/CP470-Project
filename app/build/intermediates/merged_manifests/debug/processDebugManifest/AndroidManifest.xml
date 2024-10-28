@@ -6,7 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="24"
-        android:targetSdkVersion="34" />
+        android:targetSdkVersion="35" />
 
     <permission
         android:name="com.example.camlingo.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
@@ -28,7 +28,7 @@
         android:testOnly="true"
         android:theme="@style/Theme.CamLingo" >
         <activity
-            android:name="com.example.camlingo.LoginActivity"
+            android:name="com.example.camlingo.DailyQuestActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,6 +36,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.example.camlingo.LoginActivity"
+            android:exported="true" />
         <activity
             android:name="com.example.camlingo.MainActivity"
             android:exported="true" />

@@ -1,94 +1,106 @@
 [
     {
-        "merged": "com.example.camlingo.app-debug-31:/drawable_custom_edit_text.xml.flat",
-        "source": "com.example.camlingo.app-main-33:/drawable/custom_edit_text.xml"
+        "merged": "com.example.camlingo.app-debug-34:/drawable_streak_icon.xml.flat",
+        "source": "com.example.camlingo.app-main-36:/drawable/streak_icon.xml"
     },
     {
-        "merged": "com.example.camlingo.app-debug-31:/mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.camlingo.app-main-33:/mipmap-hdpi/ic_launcher_round.webp"
+        "merged": "com.example.camlingo.app-debug-34:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.example.camlingo.app-main-36:/mipmap-mdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.example.camlingo.app-debug-31:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "com.example.camlingo.app-main-33:/mipmap-anydpi-v26/ic_launcher_round.xml"
+        "merged": "com.example.camlingo.app-debug-34:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.example.camlingo.app-main-36:/mipmap-anydpi-v26/ic_launcher_round.xml"
     },
     {
-        "merged": "com.example.camlingo.app-debug-31:/font_typold_black.otf.flat",
-        "source": "com.example.camlingo.app-main-33:/font/typold_black.otf"
+        "merged": "com.example.camlingo.app-debug-34:/font_typold_black.otf.flat",
+        "source": "com.example.camlingo.app-main-36:/font/typold_black.otf"
     },
     {
-        "merged": "com.example.camlingo.app-debug-31:/drawable_baseline_lock_24.xml.flat",
-        "source": "com.example.camlingo.app-main-33:/drawable/baseline_lock_24.xml"
+        "merged": "com.example.camlingo.app-debug-34:/xml_backup_rules.xml.flat",
+        "source": "com.example.camlingo.app-main-36:/xml/backup_rules.xml"
     },
     {
-        "merged": "com.example.camlingo.app-debug-31:/mipmap-mdpi_ic_launcher.webp.flat",
-        "source": "com.example.camlingo.app-main-33:/mipmap-mdpi/ic_launcher.webp"
+        "merged": "com.example.camlingo.app-debug-34:/drawable_treasure_chest.xml.flat",
+        "source": "com.example.camlingo.app-main-36:/drawable/treasure_chest.xml"
     },
     {
-        "merged": "com.example.camlingo.app-debug-31:/xml_backup_rules.xml.flat",
-        "source": "com.example.camlingo.app-main-33:/xml/backup_rules.xml"
+        "merged": "com.example.camlingo.app-debug-34:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.camlingo.app-main-36:/mipmap-mdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.camlingo.app-debug-31:/drawable_baseline_person_24.xml.flat",
-        "source": "com.example.camlingo.app-main-33:/drawable/baseline_person_24.xml"
+        "merged": "com.example.camlingo.app-debug-34:/xml_data_extraction_rules.xml.flat",
+        "source": "com.example.camlingo.app-main-36:/xml/data_extraction_rules.xml"
     },
     {
-        "merged": "com.example.camlingo.app-debug-31:/mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "com.example.camlingo.app-main-33:/mipmap-xxxhdpi/ic_launcher.webp"
+        "merged": "com.example.camlingo.app-debug-34:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.camlingo.app-main-36:/mipmap-hdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.camlingo.app-debug-31:/xml_data_extraction_rules.xml.flat",
-        "source": "com.example.camlingo.app-main-33:/xml/data_extraction_rules.xml"
+        "merged": "com.example.camlingo.app-debug-34:/drawable_baseline_lock_24.xml.flat",
+        "source": "com.example.camlingo.app-main-36:/drawable/baseline_lock_24.xml"
     },
     {
-        "merged": "com.example.camlingo.app-debug-31:/mipmap-xhdpi_ic_launcher.webp.flat",
-        "source": "com.example.camlingo.app-main-33:/mipmap-xhdpi/ic_launcher.webp"
+        "merged": "com.example.camlingo.app-debug-34:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.example.camlingo.app-main-36:/mipmap-hdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.example.camlingo.app-debug-31:/layout_activity_login.xml.flat",
-        "source": "com.example.camlingo.app-main-33:/layout/activity_login.xml"
+        "merged": "com.example.camlingo.app-debug-34:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.camlingo.app-main-36:/mipmap-xxxhdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.example.camlingo.app-debug-31:/mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.camlingo.app-main-33:/mipmap-xhdpi/ic_launcher_round.webp"
+        "merged": "com.example.camlingo.app-debug-34:/font_rodin.otf.flat",
+        "source": "com.example.camlingo.app-main-36:/font/rodin.otf"
     },
     {
-        "merged": "com.example.camlingo.app-debug-31:/layout_activity_main.xml.flat",
-        "source": "com.example.camlingo.app-main-33:/layout/activity_main.xml"
+        "merged": "com.example.camlingo.app-debug-34:/layout_activity_daily_quest.xml.flat",
+        "source": "com.example.camlingo.app-main-36:/layout/activity_daily_quest.xml"
     },
     {
-        "merged": "com.example.camlingo.app-debug-31:/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "com.example.camlingo.app-main-33:/mipmap-anydpi-v26/ic_launcher.xml"
+        "merged": "com.example.camlingo.app-debug-34:/layout_activity_login.xml.flat",
+        "source": "com.example.camlingo.app-main-36:/layout/activity_login.xml"
     },
     {
-        "merged": "com.example.camlingo.app-debug-31:/font_rodin.otf.flat",
-        "source": "com.example.camlingo.app-main-33:/font/rodin.otf"
+        "merged": "com.example.camlingo.app-debug-34:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.camlingo.app-main-36:/mipmap-xxhdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.example.camlingo.app-debug-31:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.camlingo.app-main-33:/mipmap-xxxhdpi/ic_launcher_round.webp"
+        "merged": "com.example.camlingo.app-debug-34:/layout_activity_main.xml.flat",
+        "source": "com.example.camlingo.app-main-36:/layout/activity_main.xml"
     },
     {
-        "merged": "com.example.camlingo.app-debug-31:/mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "com.example.camlingo.app-main-33:/mipmap-hdpi/ic_launcher.webp"
+        "merged": "com.example.camlingo.app-debug-34:/drawable_custom_edit_text.xml.flat",
+        "source": "com.example.camlingo.app-main-36:/drawable/custom_edit_text.xml"
     },
     {
-        "merged": "com.example.camlingo.app-debug-31:/drawable_ic_launcher_foreground.xml.flat",
-        "source": "com.example.camlingo.app-main-33:/drawable/ic_launcher_foreground.xml"
+        "merged": "com.example.camlingo.app-debug-34:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.camlingo.app-main-36:/mipmap-xhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.camlingo.app-debug-31:/mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.camlingo.app-main-33:/mipmap-mdpi/ic_launcher_round.webp"
+        "merged": "com.example.camlingo.app-debug-34:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.example.camlingo.app-main-36:/mipmap-xhdpi/ic_launcher.webp"
     },
     {
-        "merged": "com.example.camlingo.app-debug-31:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.camlingo.app-main-33:/mipmap-xxhdpi/ic_launcher_round.webp"
+        "merged": "com.example.camlingo.app-debug-34:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.example.camlingo.app-main-36:/mipmap-anydpi-v26/ic_launcher.xml"
     },
     {
-        "merged": "com.example.camlingo.app-debug-31:/drawable_ic_launcher_background.xml.flat",
-        "source": "com.example.camlingo.app-main-33:/drawable/ic_launcher_background.xml"
+        "merged": "com.example.camlingo.app-debug-34:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.example.camlingo.app-main-36:/drawable/ic_launcher_background.xml"
     },
     {
-        "merged": "com.example.camlingo.app-debug-31:/mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "com.example.camlingo.app-main-33:/mipmap-xxhdpi/ic_launcher.webp"
+        "merged": "com.example.camlingo.app-debug-34:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.camlingo.app-main-36:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.camlingo.app-debug-34:/drawable_baseline_person_24.xml.flat",
+        "source": "com.example.camlingo.app-main-36:/drawable/baseline_person_24.xml"
+    },
+    {
+        "merged": "com.example.camlingo.app-debug-34:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.example.camlingo.app-main-36:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.example.camlingo.app-debug-34:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.camlingo.app-main-36:/mipmap-xxxhdpi/ic_launcher_round.webp"
     }
 ]
