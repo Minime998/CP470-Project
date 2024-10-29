@@ -8,17 +8,33 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <!-- Toolbar at the top -->
+    <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/toolbar"
-        app:title=""
-        app:titleMargin="10dp"
         android:background="@color/blue_dark"
-        app:logo="@drawable/baseline_person_24_white"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:contentInsetStart="10dp" >
+
+        <ImageView
+            android:id="@+id/toolbar_pfp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/baseline_person_24_white"
+            android:layout_gravity="start"
+            android:clickable="true"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Welcome,\nJohn Lingo"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:fontFamily="@font/rodin" />
+
+    </androidx.appcompat.widget.Toolbar>
 
     <!-- Main content area centered below the toolbar -->
     <LinearLayout
@@ -67,10 +83,10 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- Spacer between cards -->
+        <!-- Space between cards -->
         <View
             android:layout_width="match_parent"
-            android:layout_height="10dp" /> <!-- Adjust the height as needed -->
+            android:layout_height="10dp" />
 
         <!-- Second Row: Daily Quest and Leader Board -->
         <LinearLayout
@@ -103,7 +119,7 @@
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:src="@drawable/baseline_assignment_24" /> <!-- Replace with your drawable -->
+                        android:src="@drawable/baseline_assignment_24" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -139,7 +155,7 @@
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:src="@drawable/baseline_leaderboard_24" /> <!-- Replace with your drawable -->
+                        android:src="@drawable/baseline_leaderboard_24" />
 
                     <TextView
                         android:layout_width="wrap_content"

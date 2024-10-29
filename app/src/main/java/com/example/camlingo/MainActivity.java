@@ -9,12 +9,13 @@ import androidx.cardview.widget.CardView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String userName = "John Lingo"; // Replace with actual user name
     private CardView continueLearningCard, dailyQuestsCard, leaderboardCard;
 
     @Override
@@ -33,9 +34,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Clear default title
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
-
-        // Set the toolbar title to include user name
-        toolbar.setTitle("Welcome " + userName);
 
         dailyQuestsCard.setOnClickListener(new View.OnClickListener() {
             @Override
