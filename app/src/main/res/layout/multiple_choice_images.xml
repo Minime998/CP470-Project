@@ -13,7 +13,7 @@
         android:layout_height="250dp"
         android:src="@drawable/streak_icon"
         android:layout_gravity="center"
-        android:contentDescription="question image"
+        android:contentDescription="@string/image_desc"
         />
 
     <TextView
