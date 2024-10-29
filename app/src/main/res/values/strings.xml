@@ -10,14 +10,22 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+
+    <!--  Daily Quests Main Page  -->
     <string name="daily_quest_guide">Complete quests to earn rewards!</string>
     <string name="login_rewards">Login rewards</string>
     <string name="todays_quest">Today\'s Quest</string>
     <string name="claim_now">Claim now</string>
     <string name="streak">Streak</string>
+
+    <!--  Lessons Layout Text  -->
     <string name="images_questions">What do you see?</string>
     <string name="audio_questions">What do you hear?</string>
     <string name="start_quest">Start</string>
     <string name="check_answer">Check</string>
     <string name="got_it">Got it</string>
+    <string name="upload_text">Upload image of...</string>
+    <string name="audio_button_desc">Press button to play sound</string>
+    <string name="image_desc">Identify the object shown in the image</string>
+    <string name="camera_btn_desc">Open camera</string>
 </resources>
