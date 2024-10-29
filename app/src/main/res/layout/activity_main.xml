@@ -26,18 +26,22 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="vertical"
-        android:gravity="center">
+        android:gravity="center"
+        android:padding="12dp">
 
         <!-- First Row: Continue Learning -->
         <androidx.cardview.widget.CardView
-            android:id="@+id/firstRowCard"
+            android:id="@+id/continue_learning_card"
             android:layout_width="match_parent"
             android:layout_height="160dp"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:gravity="center_vertical"
             app:cardCornerRadius="8dp"
-            app:cardElevation="4dp">
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/blue_dark"
+            android:clickable="true"
+            android:focusable="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -55,7 +59,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Continue Learning"
-                    android:textColor="@color/blue_dark"
+                    android:textColor="@color/white"
                     android:textSize="18sp"
                     android:fontFamily="@font/rodin"
                     android:layout_marginTop="4dp"
@@ -78,12 +82,16 @@
             android:gravity="center">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/daily_quests_card"
                 android:layout_width="0dp"
                 android:layout_height="120dp"
                 android:layout_weight="1"
                 android:layout_marginEnd="4dp"
                 app:cardCornerRadius="8dp"
-                app:cardElevation="4dp">
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="@color/blue_dark"
+                android:clickable="true"
+                android:focusable="true">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -101,7 +109,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Daily Quests"
-                        android:textColor="@color/blue_dark"
+                        android:textColor="@color/white"
                         android:textSize="14sp"
                         android:fontFamily="@font/rodin"
                         android:layout_marginTop="8dp"
@@ -110,19 +118,23 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/leaderboard_card"
                 android:layout_width="0dp"
                 android:layout_height="120dp"
                 android:layout_weight="1"
                 android:layout_marginStart="8dp"
                 app:cardCornerRadius="8dp"
-                app:cardElevation="4dp">
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="@color/blue_dark">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:gravity="center"
-                    android:padding="0dp">
+                    android:padding="0dp"
+                    android:clickable="true"
+                    android:focusable="true">
 
                     <ImageView
                         android:layout_width="40dp"
@@ -133,7 +145,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Leaderboard"
-                        android:textColor="@color/blue_dark"
+                        android:textColor="@color/white"
                         android:textSize="14sp"
                         android:fontFamily="@font/rodin"
                         android:layout_marginTop="8dp"
