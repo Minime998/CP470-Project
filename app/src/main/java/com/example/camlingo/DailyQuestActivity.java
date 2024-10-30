@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -45,8 +46,10 @@ public class DailyQuestActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //no activity to open yet, just a placeholder here
-                Intent intent = new Intent(DailyQuestActivity.this, DailyQuestActivity.class);
-                startActivity(intent);
+                //Intent intent = new Intent(DailyQuestActivity.this, DailyQuestActivity.class);
+                //startActivity(intent);
+                Toast.makeText(DailyQuestActivity.this, "ClaimButton Clicked", Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -55,8 +58,10 @@ public class DailyQuestActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //no activity to open yet, just a placeholder here
-                Intent intent = new Intent(DailyQuestActivity.this, DailyQuestActivity.class);
-                startActivity(intent);
+                //Intent intent = new Intent(DailyQuestActivity.this, DailyQuestActivity.class);
+                //startActivity(intent);
+                Toast.makeText(DailyQuestActivity.this, "StarQuestButton Clicked", Toast.LENGTH_SHORT).show();
+
             }
         });
 

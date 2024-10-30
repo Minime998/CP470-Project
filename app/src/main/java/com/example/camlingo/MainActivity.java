@@ -51,8 +51,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 //no activity to open yet, just a placeholder here
-                Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                startActivity(intent);
+                //Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                //startActivity(intent);
+                Toast.makeText(MainActivity.this, "continueLearningCard Clicked", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -61,8 +62,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //no activity to open yet, just a placeholder here
-                Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                startActivity(intent);
+                //Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                //startActivity(intent);
+                Toast.makeText(MainActivity.this, "leaderboardCard Clicked", Toast.LENGTH_SHORT).show();
+
             }
         });
 
