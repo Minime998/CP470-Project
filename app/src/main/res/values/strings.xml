@@ -28,4 +28,8 @@
     <string name="audio_button_desc">Press button to play sound</string>
     <string name="image_desc">Identify the object shown in the image</string>
     <string name="camera_btn_desc">Open camera</string>
+
+    <!-- Upload Image Texts/Labels -->
+    <string name="upload_button_lbl">Upload Image</string>
+    <string name="identify_object_button">Identify Object Photo</string>
 </resources>
