@@ -105,7 +105,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="@color/green"
-            android:onClick="showContinueBtn"
             android:paddingVertical="12dp"
             android:text="@string/check_answer"
             app:cornerRadius="0dp" />

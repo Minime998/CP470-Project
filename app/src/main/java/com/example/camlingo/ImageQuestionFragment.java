@@ -73,8 +73,4 @@ public class ImageQuestionFragment extends Fragment {
         return view;
     }
 
-    public void changeBackground(View v){
-        v.setBackgroundColor(R.color.gold);
-    }
-
 }
