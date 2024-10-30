@@ -57,9 +57,8 @@ public class DailyQuestActivity extends AppCompatActivity {
         StarQuestButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //no activity to open yet, just a placeholder here
-                //Intent intent = new Intent(DailyQuestActivity.this, DailyQuestActivity.class);
-                //startActivity(intent);
+                Intent intent = new Intent(DailyQuestActivity.this, DailyQuestsTasks.class);
+                startActivity(intent);
                 Toast.makeText(DailyQuestActivity.this, "StarQuestButton Clicked", Toast.LENGTH_SHORT).show();
 
             }

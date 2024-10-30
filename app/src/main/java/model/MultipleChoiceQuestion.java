@@ -1,9 +1,10 @@
 package model;
 import androidx.annotation.NonNull;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class MultipleChoiceQuestion {
+public class MultipleChoiceQuestion implements Serializable {
 
     // multiple choice questions are either visual or audio type
     public enum QuestionType{
@@ -94,23 +95,6 @@ public class MultipleChoiceQuestion {
     @Override
     public String toString() {
         return "Question{question = " + question + ", answer=" + answer + ", options= " + Arrays.toString(options) + ", type=" + type + "}";
-    }
-
-    public static void main(String [] args){
-
-        String[] options2 = {"TV", "Laptop", "Tablespoon", "Mug"};
-        String quest = "What do you see";
-        QuestionType type = QuestionType.AUDIO;
-
-        MultipleChoiceQuestion q2 = new MultipleChoiceQuestion(type, quest, "TV", options2, "firegaurd");
-        System.out.println("question: " + q2.getQuestion());
-        System.out.println("answer: " + q2.getAnswer());
-        System.out.println("type: " + q2.getType());
-        System.out.println("media: " + q2.getMedia());
-        q2.setType(QuestionType.VISUAL);
-        System.out.println("type: " + q2.getType());
-        System.out.println(Arrays.toString(q2.getOptions()));
-
     }
 }
 
