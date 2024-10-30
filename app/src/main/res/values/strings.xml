@@ -11,7 +11,7 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
 
-    <!--  Daily Quests Main Page  -->
+    <!--  Daily Quests Main Activity  -->
     <string name="daily_quest_guide">Complete quests to earn rewards!</string>
     <string name="login_rewards">Login rewards</string>
     <string name="todays_quest">Today\'s Quest</string>
@@ -32,4 +32,10 @@
     <!-- Upload Image Texts/Labels -->
     <string name="upload_button_lbl">Upload Image</string>
     <string name="identify_object_button">Identify Object Photo</string>
+    <!--  Daily Quest Task Activity  -->
+    <string name="continue_btn_text">Continue</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment1">Hello blank fragment 1</string>
+    <string name="hello_blank_fragment2">Hello blank fragment 2</string>
 </resources>

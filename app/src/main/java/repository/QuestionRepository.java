@@ -7,6 +7,7 @@ import java.util.NoSuchElementException;
 import model.MultipleChoiceQuestion;
 
 public class QuestionRepository {
+    private static QuestionRepository instance;
     private Map<String, MultipleChoiceQuestion> questionMap = new HashMap<>();
 
     public QuestionRepository(){
@@ -40,6 +41,14 @@ public class QuestionRepository {
                 "Purse", new String[]{"Suitcase", "Backpack", "Purse", "Bag"},"q13_audio"));
         questionMap.put("q14", new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you hear?",
                 "Pillow", new String[]{"Blanket", "Pillow", "Sheet", "Mattress"},"q14_audio"));
+    }
+
+    public static synchronized QuestionRepository getInstance(){
+        if (instance == null){
+            instance = new QuestionRepository();
+        }
+
+        return instance;
     }
 
     public MultipleChoiceQuestion getQuestion(String questionId){

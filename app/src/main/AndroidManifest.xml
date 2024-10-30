@@ -14,7 +14,7 @@
         android:theme="@style/Theme.CamLingo"
         tools:targetApi="31">
         <activity
-            android:name=".image_upload"
+            android:name=".DailyQuestsTasks"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
