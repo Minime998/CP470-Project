@@ -147,7 +147,6 @@
                         android:layout_weight="1"
                         android:backgroundTint="@color/blue_dark"
                         android:textAllCaps="true"
-                        android:onClick="startQuest"
                         android:text="@string/start_quest" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
