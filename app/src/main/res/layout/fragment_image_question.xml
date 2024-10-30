@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".ImageQuestionFragment">
+
+    <ImageView
+        android:id="@+id/question_img"
+        android:layout_width="206dp"
+        android:layout_height="209dp"
+        android:contentDescription="@string/images_questions"
+        android:src="@drawable/streak_icon"
+        app:layout_constraintBottom_toTopOf="@+id/img_question_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/img_question_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/optionsGroupImg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/question_img" />
+
+    <RadioGroup
+        android:id="@+id/optionsGroupImg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginVertical="25dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_question_text"
+        app:layout_constraintVertical_bias="1.0">
+
+        <RadioButton
+            android:id="@+id/img_option1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill"
+            android:background="@drawable/radio_button_selector"
+            android:gravity="center"
+            android:button="@null"
+            android:textColor="@color/white" />
+
+        <RadioButton
+            android:id="@+id/img_option2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/radio_button_selector"
+            android:gravity="center"
+            android:button="@null"
+            android:layout_marginVertical="5dp"
+            android:textColor="@color/white" />
+
+        <RadioButton
+            android:id="@+id/img_option3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/radio_button_selector"
+            android:gravity="center"
+            android:button="@null"
+            android:layout_marginBottom="7dp"
+            android:textColor="@color/white" />
+
+        <RadioButton
+            android:id="@+id/img_option4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/radio_button_selector"
+            android:gravity="center"
+            android:button="@null"
+            android:textColor="@color/white" />
+
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginVertical="25dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/optionsGroupImg">
+
+        <Button
+            android:id="@+id/checkBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/green"
+            android:paddingVertical="12dp"
+            android:text="@string/check_answer"
+            app:cornerRadius="0dp" />
+
+        <Button
+            android:id="@+id/continueBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/black"
+            android:paddingVertical="10dp"
+            android:text="@string/continue_btn_text"
+            android:textAllCaps="true"
+            android:visibility="gone"
+            app:cornerRadius="0dp" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
