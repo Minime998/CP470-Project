@@ -169,6 +169,12 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
         </LinearLayout>
+
+        <Button
+            android:id="@+id/upload_button"
+            android:layout_width="216dp"
+            android:layout_height="wrap_content"
+            android:text="@string/upload_button_lbl" />
     </LinearLayout>
 
 </LinearLayout>
