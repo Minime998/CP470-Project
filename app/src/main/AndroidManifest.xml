@@ -30,6 +30,10 @@
             android:exported="true"
             android:parentActivityName=".MainActivity" />
         <activity
+            android:name=".DailyQuestsTasks"
+            android:exported="true"
+            android:parentActivityName=".DailyQuestActivity" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:parentActivityName=".LoginActivity" />

@@ -8,6 +8,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import model.MultipleChoiceQuestion;
 import repository.QuestionRepository;
 
@@ -26,13 +29,12 @@ public class DailyQuestsTasks extends AppCompatActivity {
 
         // get questions from the repository
         QuestionRepository repository = QuestionRepository.getInstance();
-        MultipleChoiceQuestion question = repository.getQuestion("q1"); // get one question
+
+        List<MultipleChoiceQuestion> questions = new ArrayList<>(repository.getAllQuestions().values());
 
         // pass question to fragment
-        ImageQuestionFragment fragment = new ImageQuestionFragment();
-        Bundle args = new Bundle();
-        args.putSerializable("question",question);
-        fragment.setArguments(args);
+        ImageQuestionFragment fragment = ImageQuestionFragment.newInstance(questions);
+
 
         // display the fragment
         getSupportFragmentManager().beginTransaction()

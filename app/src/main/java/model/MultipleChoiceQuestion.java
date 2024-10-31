@@ -16,9 +16,9 @@ public class MultipleChoiceQuestion implements Serializable {
     private String question;
     private String[] options;
     private QuestionType type; // audio or visual
-    private String media; // Store the reference to the media resource
+    private int media; // Store the reference to the media resource
 
-    public MultipleChoiceQuestion(QuestionType type, String question, String answer, String[] optionsArray, String media) {
+    public MultipleChoiceQuestion(QuestionType type, String question, String answer, String[] optionsArray, int media) {
         if(optionsArray.length != 4){
             throw new IllegalArgumentException("Options array must have exactly 4 elements, one of which is the correct answer");
         }
@@ -31,11 +31,6 @@ public class MultipleChoiceQuestion implements Serializable {
         if(type == null){
             throw new IllegalArgumentException("type can't be null");
         }
-
-        if(media == null || media.isEmpty()){
-            throw new IllegalArgumentException("media can't be null or empty");
-        }
-
 
 
         this.answer = answer.toLowerCase();
@@ -58,7 +53,7 @@ public class MultipleChoiceQuestion implements Serializable {
     public QuestionType getType() {
         return type;
     }
-    public String getMedia() {
+    public int getMedia() {
         return media;
     }
 
@@ -87,7 +82,7 @@ public class MultipleChoiceQuestion implements Serializable {
         this.type = newType;
     }
 
-    public void setMedia(String media) {
+    public void setMedia(int media) {
         this.media = media; // Setter for media
     }
 
