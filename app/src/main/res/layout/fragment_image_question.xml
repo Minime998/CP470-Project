@@ -8,10 +8,10 @@
 
     <ImageView
         android:id="@+id/question_img"
-        android:layout_width="206dp"
-        android:layout_height="209dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:contentDescription="@string/images_questions"
-        android:src="@drawable/streak_icon"
+        android:src="@drawable/refrigerator"
         app:layout_constraintBottom_toTopOf="@+id/img_question_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +50,6 @@
             android:layout_gravity="fill"
             android:background="@drawable/radio_button_selector"
             android:gravity="center"
-            android:button="@null"
             android:textColor="@color/white" />
 
         <RadioButton
@@ -60,7 +59,6 @@
             android:layout_weight="1"
             android:background="@drawable/radio_button_selector"
             android:gravity="center"
-            android:button="@null"
             android:layout_marginVertical="5dp"
             android:textColor="@color/white" />
 
@@ -71,7 +69,6 @@
             android:layout_weight="1"
             android:background="@drawable/radio_button_selector"
             android:gravity="center"
-            android:button="@null"
             android:layout_marginBottom="7dp"
             android:textColor="@color/white" />
 

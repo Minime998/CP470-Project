@@ -35,6 +35,7 @@
     <!--  Daily Quest Task Activity  -->
     <string name="continue_btn_text">Continue</string>
     <string name="finish">Finish</string>
+    <string name="finished_quest">You\'ve completed all tasks!</string>
 
 
 </resources>

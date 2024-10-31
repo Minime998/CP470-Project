@@ -109,9 +109,10 @@ public class ImageQuestionFragment extends Fragment {
                 currentQuestionIndex++;
                 questionCount++;
                 currentQuestion = updateQuestion();
+                optionsGroup.clearCheck();
             }else {
                 optionsGroup = getView().findViewById(R.id.optionsGroupImg);
-                questionText.setText("You've completed all tasks!");
+                questionText.setText(R.string.finished_quest);
                 optionsGroup.setVisibility(View.GONE);
 
                 continueBtn.setVisibility(View.GONE);
@@ -119,8 +120,10 @@ public class ImageQuestionFragment extends Fragment {
 
                 finishBtn = getView().findViewById(R.id.finishBtn);
                 finishBtn.setVisibility(View.VISIBLE);
-                setupFinishButton(view);
 
+                questionImage.setImageResource(R.drawable.baseline_check_24);
+
+                setupFinishButton(view); // close activity when finish button clicked
             }
         });
 
@@ -138,8 +141,8 @@ public class ImageQuestionFragment extends Fragment {
         option3.setText(question.getOptions()[2]);
         option4.setText(question.getOptions()[3]);
 
-        // TODO Reset selected option here
-
+        // Set the image for the question
+        questionImage.setImageResource(question.getMedia());
 
         // Reset buttons for next question
         checkBtn.setVisibility(View.VISIBLE);
