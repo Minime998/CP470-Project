@@ -22,7 +22,7 @@
         android:id="@+id/img_question_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="15dp"
 
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/optionsGroupImg"
@@ -37,7 +37,7 @@
         android:layout_marginHorizontal="25dp"
         android:layout_marginVertical="25dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/actionBtnLinearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_question_text"
@@ -88,13 +88,14 @@
     </RadioGroup>
 
     <LinearLayout
+        android:id="@+id/actionBtnLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="25dp"
         android:layout_marginVertical="25dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/finishBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/optionsGroupImg">
@@ -121,6 +122,23 @@
             android:visibility="gone"
             app:cornerRadius="0dp" />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/finishBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:backgroundTint="@color/blue_dark"
+        android:paddingVertical="12dp"
+        android:text="@string/finish"
+        app:cornerRadius="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/actionBtnLinearLayout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

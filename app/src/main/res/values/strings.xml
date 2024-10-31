@@ -31,8 +31,7 @@
 
     <!--  Daily Quest Task Activity  -->
     <string name="continue_btn_text">Continue</string>
+    <string name="finish">Finish</string>
 
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment1">Hello blank fragment 1</string>
-    <string name="hello_blank_fragment2">Hello blank fragment 2</string>
+
 </resources>
