@@ -9,9 +9,9 @@ import androidx.cardview.widget.CardView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+import com.bumptech.glide.Glide;
 
 import java.util.Objects;
 
@@ -24,10 +24,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ImageView animated_camera = findViewById(R.id.camera_gif);
+        Glide.with(this)
+                .load(R.drawable.camera)
+                .into(animated_camera);
+
+        ImageView animated_bag = findViewById(R.id.bag_gif);
+        Glide.with(this)
+                .load(R.drawable.backpack)
+                .into(animated_bag);
+
+        ImageView animated_leaderboard = findViewById(R.id.leaderboard_gif);
+        Glide.with(this)
+                .load(R.drawable.leaderboard)
+                .into(animated_leaderboard);
+
         // Find CardViews by ID
         continueLearningCard = findViewById(R.id.continue_learning_card);
         dailyQuestsCard = findViewById(R.id.daily_quests_card);
         leaderboardCard = findViewById(R.id.leaderboard_card);
+
+
 
         // Set up the toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
