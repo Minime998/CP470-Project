@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.settings) {
-            // Handle settings action
+            // Handle setting action
             return true;
         }
 
