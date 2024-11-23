@@ -4,4 +4,14 @@
         <attr name="stroke" format="float" />
         <attr name="strokeColor" format="color" />
     </declare-styleable>
+
+    <style name="CustomPopupMenu" parent="Widget.AppCompat.PopupMenu">
+        <item name="android:fontFamily">@font/rodin</item>"
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:background">@drawable/popup_menu_background</item>
+        <item name="android:dividerHeight">0dp</item>
+        <item name="android:itemPadding">0dp</item>
+    </style>
+
 </resources>
