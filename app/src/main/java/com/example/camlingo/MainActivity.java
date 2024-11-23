@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         // Clear default title
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 
+
         dailyQuestsCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,6 +105,13 @@ public class MainActivity extends AppCompatActivity {
 
         if (id == R.id.settings) {
             // Handle settings action
+            return true;
+        }
+
+        if (id == R.id.logout) {
+            // Handle logout action
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
             return true;
         }
 
