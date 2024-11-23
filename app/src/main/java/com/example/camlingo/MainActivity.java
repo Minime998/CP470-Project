@@ -28,16 +28,6 @@ public class MainActivity extends AppCompatActivity {
         continueLearningCard = findViewById(R.id.continue_learning_card);
         dailyQuestsCard = findViewById(R.id.daily_quests_card);
         leaderboardCard = findViewById(R.id.leaderboard_card);
-        Button upload_button = findViewById(R.id.upload_button);
-
-        //Upload Button
-        upload_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, image_upload.class
-                ));
-            }
-        });
 
         // Set up the toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -63,8 +53,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 //no activity to open yet, just a placeholder here
-                //Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                //startActivity(intent);
+                Intent intent = new Intent(MainActivity.this, image_upload.class);
+                startActivity(intent);
                 Toast.makeText(MainActivity.this, "continueLearningCard Clicked", Toast.LENGTH_SHORT).show();
             }
         });
