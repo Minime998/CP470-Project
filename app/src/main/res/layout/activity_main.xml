@@ -103,7 +103,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/daily_quests_card"
                 android:layout_width="0dp"
-                android:layout_height="120dp"
+                android:layout_height="100dp"
                 android:layout_marginEnd="4dp"
                 android:layout_weight="1"
                 android:clickable="true"
@@ -121,14 +121,14 @@
                     android:background="@drawable/cardview_background2">
 
                     <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
                         android:id="@+id/bag_gif" />
 
                     <com.example.camlingo.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="0dp"
                         android:fontFamily="@font/rodin"
                         android:text="Daily Quests"
                         android:textColor="@color/blue_dark"
@@ -142,7 +142,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/leaderboard_card"
                 android:layout_width="0dp"
-                android:layout_height="120dp"
+                android:layout_height="100dp"
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
                 android:clickable="true"
@@ -160,14 +160,14 @@
                     android:background="@drawable/cardview_background2">
 
                     <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
                         android:id="@+id/leaderboard_gif" />
 
                     <com.example.camlingo.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="0dp"
                         android:fontFamily="@font/rodin"
                         android:text="Leaderboard"
                         android:textColor="@color/blue_dark"
