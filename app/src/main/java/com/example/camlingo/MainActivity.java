@@ -9,9 +9,9 @@ import androidx.cardview.widget.CardView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+import com.bumptech.glide.Glide;
 
 import java.util.Objects;
 
@@ -24,30 +24,38 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ImageView animated_camera = findViewById(R.id.camera_gif);
+        Glide.with(this)
+                .load(R.drawable.camera)
+                .into(animated_camera);
+
+        ImageView animated_bag = findViewById(R.id.bag_gif);
+        Glide.with(this)
+                .load(R.drawable.backpack)
+                .into(animated_bag);
+
+        ImageView animated_leaderboard = findViewById(R.id.leaderboard_gif);
+        Glide.with(this)
+                .load(R.drawable.leaderboard)
+                .into(animated_leaderboard);
+
         // Find CardViews by ID
         continueLearningCard = findViewById(R.id.continue_learning_card);
         dailyQuestsCard = findViewById(R.id.daily_quests_card);
         leaderboardCard = findViewById(R.id.leaderboard_card);
-        Button upload_button = findViewById(R.id.upload_button);
 
-        //Upload Button
-        upload_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, image_upload.class
-                ));
-            }
-        });
+
 
         // Set up the toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         //this adds the back button, so when pressed it goes back to the login page
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Clear default title
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
+
 
         dailyQuestsCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,8 +71,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 //no activity to open yet, just a placeholder here
-                //Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                //startActivity(intent);
+                Intent intent = new Intent(MainActivity.this, image_upload.class);
+                startActivity(intent);
                 Toast.makeText(MainActivity.this, "continueLearningCard Clicked", Toast.LENGTH_SHORT).show();
             }
         });
@@ -96,7 +104,14 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.settings) {
-            // Handle settings action
+            // Handle setting action
+            return true;
+        }
+
+        if (id == R.id.logout) {
+            // Handle logout action
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
             return true;
         }
 

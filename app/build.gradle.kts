@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
 }
 
+
 android {
     namespace = "com.example.camlingo"
     compileSdk = 35
@@ -50,4 +51,6 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.11.0")
     implementation("com.squareup.retrofit2:converter-gson:2.11.0")
     implementation("com.google.code.gson:gson:2.11.0")
+    implementation ("com.github.bumptech.glide:glide:5.0.0-rc01")
+    annotationProcessor ("com.github.bumptech.glide:compiler:5.0.0-rc01")
     }

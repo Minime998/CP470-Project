@@ -1,5 +1,4 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,29 +9,28 @@
 
     <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/toolbar"
         android:background="@color/blue_dark"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:contentInsetStart="10dp" >
+        app:popupTheme="@style/CustomPopupMenu">
 
         <ImageView
             android:id="@+id/toolbar_pfp"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:src="@drawable/baseline_person_24_white"
             android:layout_gravity="start"
-            android:clickable="true"/>
+            android:clickable="true"
+            android:src="@drawable/baseline_person_24_white" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/rodin"
             android:text="Welcome,\nJohn Lingo"
             android:textColor="@color/white"
-            android:textSize="12sp"
-            android:fontFamily="@font/rodin" />
+            android:textSize="12sp" />
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -41,9 +39,10 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="vertical"
         android:gravity="center"
+        android:orientation="vertical"
         android:padding="12dp">
+        android:background="@drawable/gradient1"
 
         <!-- First Row: Continue Learning -->
         <androidx.cardview.widget.CardView
@@ -52,34 +51,37 @@
             android:layout_height="160dp"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
-            android:gravity="center_vertical"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="0dp"
-            app:cardBackgroundColor="@color/blue_dark"
             android:clickable="true"
-            android:focusable="true">
+            android:focusable="true"
+            android:gravity="center_vertical"
+            app:cardBackgroundColor="@color/blue_dark"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
                 android:gravity="center"
-                android:padding="0dp">
+                android:orientation="vertical"
+                android:padding="0dp"
+                android:background="@drawable/cardview_background1">
 
                 <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:src="@drawable/baseline_smart_display_24" /> <!-- Replace with your drawable -->
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/camera_gif" />
 
-                <TextView
+                <com.example.camlingo.CustomTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Continue Learning"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:fontFamily="@font/rodin"
                     android:layout_marginTop="4dp"
-                    android:textStyle="bold" />
+                    android:fontFamily="@font/rodin"
+                    android:text="Continue Learning"
+                    android:textColor="@color/blue_dark"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:strokeColor="@color/blue_dark"
+                    app:stroke="1"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -91,90 +93,90 @@
         <!-- Second Row: Daily Quest and Leader Board -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_height="128dp"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/daily_quests_card"
                 android:layout_width="0dp"
-                android:layout_height="120dp"
-                android:layout_weight="1"
+                android:layout_height="100dp"
                 android:layout_marginEnd="4dp"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="0dp"
-                app:cardBackgroundColor="@color/blue_dark"
+                android:layout_weight="1"
                 android:clickable="true"
-                android:focusable="true">
+                android:focusable="true"
+                app:cardBackgroundColor="@color/blue_dark"
+                app:cardCornerRadius="16dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
                     android:gravity="center"
-                    android:padding="0dp">
+                    android:orientation="vertical"
+                    android:padding="0dp"
+                    android:background="@drawable/cardview_background2">
 
                     <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/baseline_assignment_24" />
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:id="@+id/bag_gif" />
 
-                    <TextView
+                    <com.example.camlingo.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Daily Quests"
-                        android:textColor="@color/white"
-                        android:textSize="14sp"
+                        android:layout_marginTop="0dp"
                         android:fontFamily="@font/rodin"
-                        android:layout_marginTop="8dp"
-                        android:textStyle="bold" />
+                        android:text="Daily Quests"
+                        android:textColor="@color/blue_dark"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:strokeColor="@color/blue_dark"
+                        app:stroke="1"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/leaderboard_card"
                 android:layout_width="0dp"
-                android:layout_height="120dp"
-                android:layout_weight="1"
+                android:layout_height="100dp"
                 android:layout_marginStart="8dp"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="0dp"
-                app:cardBackgroundColor="@color/blue_dark"
+                android:layout_weight="1"
                 android:clickable="true"
-                android:focusable="true">
+                android:focusable="true"
+                app:cardBackgroundColor="@color/blue_dark"
+                app:cardCornerRadius="16dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
                     android:gravity="center"
-                    android:padding="0dp">
+                    android:orientation="vertical"
+                    android:padding="0dp"
+                    android:background="@drawable/cardview_background2">
 
                     <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/baseline_leaderboard_24" />
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:id="@+id/leaderboard_gif" />
 
-                    <TextView
+                    <com.example.camlingo.CustomTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Leaderboard"
-                        android:textColor="@color/white"
-                        android:textSize="14sp"
+                        android:layout_marginTop="0dp"
                         android:fontFamily="@font/rodin"
-                        android:layout_marginTop="8dp"
-                        android:textStyle="bold" />
+                        android:text="Leaderboard"
+                        android:textColor="@color/blue_dark"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:strokeColor="@color/blue_dark"
+                        app:stroke="1"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
         </LinearLayout>
 
-        <Button
-            android:id="@+id/upload_button"
-            android:layout_width="216dp"
-            android:layout_height="wrap_content"
-            android:text="@string/upload_button_lbl" />
+
     </LinearLayout>
 
 </LinearLayout>
