@@ -13,7 +13,7 @@
 
     <!--  Daily Quests Main Activity  -->
     <string name="daily_quest_guide">Complete quests to earn rewards!</string>
-    <string name="login_rewards">Login rewards</string>
+    <string name="login_rewards">Login Rewards</string>
     <string name="todays_quest">Today\'s Quest</string>
     <string name="claim_now">Claim now</string>
     <string name="streak">Streak</string>

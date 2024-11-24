@@ -30,16 +30,6 @@ public class DailyQuestActivity extends AppCompatActivity {
         ClaimButton = findViewById(R.id.claim_button_DailyQuest);
         StarQuestButton = findViewById(R.id.startQuest_button_DailyQuest);
 
-        //back button on toolbar
-        Toolbar toolbar = findViewById(R.id.dailyQuest_toolbar);
-        setSupportActionBar(toolbar);
-
-        // Clear default title
-        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
-
-        //this adds the back button, so when pressed it goes back to the login page
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
         //"Claim Now" button click
         ClaimButton.setOnClickListener(new View.OnClickListener() {
