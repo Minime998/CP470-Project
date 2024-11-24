@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
+import android.widget.PopupMenu;
 
 import java.util.Objects;
 
@@ -50,11 +51,9 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //this adds the back button, so when pressed it goes back to the login page
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         // Clear default title
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
+
 
 
         dailyQuestsCard.setOnClickListener(new View.OnClickListener() {
@@ -117,4 +116,5 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }

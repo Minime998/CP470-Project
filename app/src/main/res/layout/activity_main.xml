@@ -14,7 +14,9 @@
         android:layout_height="wrap_content"
         android:background="@color/blue_dark"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/CustomPopupMenu">
+        app:popupTheme="@style/CustomPopupMenu"
+        app:contentInsetStart="10dp"
+        app:contentInsetEnd="0dp">
 
         <ImageView
             android:id="@+id/toolbar_pfp"
