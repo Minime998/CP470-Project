@@ -16,6 +16,9 @@ import androidx.core.view.WindowInsetsCompat;
 
 import java.util.Objects;
 
+import model.MultipleChoiceQuestion;
+import repository.QuestionRepository;
+
 public class DailyQuestActivity extends AppCompatActivity {
 
     private Button ClaimButton, StarQuestButton;
@@ -25,6 +28,10 @@ public class DailyQuestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_daily_quest);
+
+        QuestionRepository repository = new QuestionRepository(this);
+        repository.addQuestions(new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you see?",
+                "Refrigerator", new String[]{"Microwave", "Refrigerator", "Oven", "Toaster"}, R.drawable.refrigerator));
 
         //find button by id
         ClaimButton = findViewById(R.id.claim_button_DailyQuest);

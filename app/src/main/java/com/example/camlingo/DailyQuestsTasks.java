@@ -8,7 +8,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import model.MultipleChoiceQuestion;
@@ -28,9 +28,14 @@ public class DailyQuestsTasks extends AppCompatActivity {
         });
 
         // get questions from the repository
-        QuestionRepository repository = QuestionRepository.getInstance();
+        QuestionRepository repository = new QuestionRepository(this);
 
-        List<MultipleChoiceQuestion> questions = new ArrayList<>(repository.getAllQuestions().values());
+        // populate database with sample questions
+        repository.addQuestions(new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you see?",
+                "Refrigerator", new String[]{"Microwave", "Refrigerator", "Oven", "Toaster"}, R.drawable.refrigerator));
+
+        List<MultipleChoiceQuestion> questions = repository.getAllQuestions();
+
 
         // pass question to fragment
         ImageQuestionFragment fragment = ImageQuestionFragment.newInstance(questions);
