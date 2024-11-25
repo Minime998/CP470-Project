@@ -16,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/typold_black"
-        android:text="Welcome Back!"
+        android:text="@string/welcome_back"
         android:textColor="@color/blue_dark"
         android:textSize="40sp" />
 
@@ -32,7 +32,7 @@
         android:drawableLeft="@drawable/baseline_person_24"
         android:drawablePadding="8dp"
         android:fontFamily="@font/rodin"
-        android:hint="Username"
+        android:hint="@string/prompt_username"
         android:padding="8dp"
         android:textColor="@color/blue_dark"
         android:textColorHighlight="@color/cardview_dark_background" />
@@ -50,7 +50,7 @@
         android:drawableLeft="@drawable/baseline_lock_24"
         android:drawablePadding="8dp"
         android:fontFamily="@font/rodin"
-        android:hint="Password"
+        android:hint="@string/prompt_password"
         android:padding="8dp"
         android:textColor="@color/blue_dark"
         android:textColorHighlight="@color/cardview_dark_background"
@@ -65,7 +65,7 @@
         android:layout_marginRight="120dp"
         android:backgroundTint="@color/blue_dark"
         android:fontFamily="@font/rodin"
-        android:text="Login"
+        android:text="@string/login"
         android:textSize="18sp"
         app:cornerRadius="20dp" />
 

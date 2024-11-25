@@ -54,11 +54,6 @@ public class image_upload extends AppCompatActivity {
             return insets;
         });
 
-        // Set up the toolbar
-        Toolbar toolbar = findViewById(R.id.Image_upload_toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         //grant camera permission
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA)
                 != PackageManager.PERMISSION_GRANTED) {

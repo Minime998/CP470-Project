@@ -5,7 +5,6 @@
     <item
         android:title="Settings"
         android:id="@+id/settings"
-        android:icon="@drawable/baseline_settings_24"
         app:showAsAction="never"
         android:visible="true"/>
 
