@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".ImageQuestionFragment">
+    tools:context=".QuestionFragment">
 
     <ImageView
         android:id="@+id/question_img"
@@ -16,18 +16,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/playAudioButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:backgroundTint="@color/blue_dark"
+        app:layout_constraintTop_toBottomOf="@+id/question_img"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/play_sound"/>
+
+
 
     <TextView
         android:id="@+id/img_question_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/optionsGroupImg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/question_img" />
+        app:layout_constraintTop_toBottomOf="@+id/playAudioButton" />
 
     <RadioGroup
         android:id="@+id/optionsGroupImg"

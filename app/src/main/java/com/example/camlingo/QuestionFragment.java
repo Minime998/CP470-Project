@@ -2,8 +2,7 @@ package com.example.camlingo;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import model.MultipleChoiceQuestion;
 
-public class ImageQuestionFragment extends Fragment {
+public class QuestionFragment extends Fragment {
     private Button checkBtn;
     private Button continueBtn;
     private Button finishBtn;
@@ -34,13 +33,13 @@ public class ImageQuestionFragment extends Fragment {
 
     private int questionCount = 0;
 
-    public ImageQuestionFragment() {
+    public QuestionFragment() {
         // Required empty public constructor
     }
 
     // Fragment receives questions
-    public static ImageQuestionFragment newInstance(List<MultipleChoiceQuestion> questions) {
-        ImageQuestionFragment fragment = new ImageQuestionFragment();
+    public static QuestionFragment newInstance(List<MultipleChoiceQuestion> questions) {
+        QuestionFragment fragment = new QuestionFragment();
         Bundle args = new Bundle();
         args.putSerializable("questions", new ArrayList<>(questions));
         fragment.setArguments(args);
@@ -51,7 +50,7 @@ public class ImageQuestionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_image_question, container, false);
+        View view = inflater.inflate(R.layout.fragment_question, container, false);
 
         // Initialize views
         checkBtn = view.findViewById(R.id.checkBtn);

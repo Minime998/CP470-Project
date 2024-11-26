@@ -43,7 +43,7 @@ public class DailyQuestsTasks extends AppCompatActivity {
 
 
         // pass question to fragment
-        ImageQuestionFragment fragment = ImageQuestionFragment.newInstance(questions);
+        QuestionFragment fragment = QuestionFragment.newInstance(questions);
 
 
         // display the fragment
