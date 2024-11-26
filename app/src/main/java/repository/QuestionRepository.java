@@ -55,6 +55,19 @@ public class QuestionRepository {
     }
 
 
+    public boolean isTableEmpty() {
+        db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM " + AppDatabaseHelper.TABLE_QUESTIONS, null);
+        boolean isEmpty = true;
+        if (cursor.moveToFirst()) {
+            isEmpty = cursor.getInt(0) == 0;
+        }
+        cursor.close();
+        db.close();
+        return isEmpty;
+    }
+
+
     public void populateSampleQuestions(){
         // these are sample question similar to what our database will have
         addQuestions(new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you see?",

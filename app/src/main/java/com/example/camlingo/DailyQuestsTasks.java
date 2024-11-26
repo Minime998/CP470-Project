@@ -1,6 +1,7 @@
 package com.example.camlingo;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,8 +32,12 @@ public class DailyQuestsTasks extends AppCompatActivity {
         QuestionRepository repository = new QuestionRepository(this);
 
         // populate database with sample questions
-        repository.addQuestions(new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you see?",
-                "Refrigerator", new String[]{"Microwave", "Refrigerator", "Oven", "Toaster"}, R.drawable.refrigerator));
+        if (repository.isTableEmpty()) {
+            repository.populateSampleQuestions();
+            Log.d("QuestionRepository", "Sample questions populated because the table was empty.");
+        } else {
+            Log.d("QuestionRepository", "Table already contains data.");
+        }
 
         List<MultipleChoiceQuestion> questions = repository.getAllQuestions();
 

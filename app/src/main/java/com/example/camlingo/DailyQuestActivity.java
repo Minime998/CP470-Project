@@ -29,10 +29,6 @@ public class DailyQuestActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_daily_quest);
 
-        QuestionRepository repository = new QuestionRepository(this);
-        repository.addQuestions(new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you see?",
-                "Refrigerator", new String[]{"Microwave", "Refrigerator", "Oven", "Toaster"}, R.drawable.refrigerator));
-
         //find button by id
         ClaimButton = findViewById(R.id.claim_button_DailyQuest);
         StarQuestButton = findViewById(R.id.startQuest_button_DailyQuest);
