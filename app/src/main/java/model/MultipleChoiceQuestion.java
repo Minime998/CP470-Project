@@ -86,11 +86,6 @@ public class MultipleChoiceQuestion implements Serializable {
         this.media = media; // Setter for media
     }
 
-    @NonNull
-    @Override
-    public String toString() {
-        return "Question{question = " + question + ", answer=" + answer + ", options= " + Arrays.toString(options) + ", type=" + type + "}";
-    }
 }
 
 

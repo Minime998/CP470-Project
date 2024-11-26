@@ -1,6 +1,7 @@
 package com.example.camlingo;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,7 +10,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import model.MultipleChoiceQuestion;
@@ -39,9 +40,18 @@ public class DailyQuestsTasks extends AppCompatActivity {
 
 
         // get questions from the repository
-        QuestionRepository repository = QuestionRepository.getInstance();
+        QuestionRepository repository = new QuestionRepository(this);
 
-        List<MultipleChoiceQuestion> questions = new ArrayList<>(repository.getAllQuestions().values());
+        // populate database with sample questions
+        if (repository.isTableEmpty()) {
+            repository.populateSampleQuestions();
+            Log.d("QuestionRepository", "Sample questions populated because the table was empty.");
+        } else {
+            Log.d("QuestionRepository", "Table already contains data.");
+        }
+
+        List<MultipleChoiceQuestion> questions = repository.getAllQuestions();
+
 
         // pass question to fragment
         ImageQuestionFragment fragment = ImageQuestionFragment.newInstance(questions);

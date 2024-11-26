@@ -16,6 +16,9 @@ import androidx.core.view.WindowInsetsCompat;
 
 import java.util.Objects;
 
+import model.MultipleChoiceQuestion;
+import repository.QuestionRepository;
+
 public class DailyQuestActivity extends AppCompatActivity {
 
     private Button ClaimButton, StarQuestButton;

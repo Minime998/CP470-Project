@@ -2,69 +2,167 @@ package repository;
 
 import com.example.camlingo.R;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
+import database.AppDatabaseHelper;
 import model.MultipleChoiceQuestion;
 
 public class QuestionRepository {
     private static QuestionRepository instance;
     private final Map<String, MultipleChoiceQuestion> questionMap = new HashMap<>();
+    private final AppDatabaseHelper dbHelper;
+    private SQLiteDatabase db;
 
-    public QuestionRepository(){
+
+
+    public QuestionRepository(Context context){
+        dbHelper = new AppDatabaseHelper(context);
+    }
+
+    // method to add questions to database using MCQ object
+    public void addQuestions(MultipleChoiceQuestion question) {
+        db = dbHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(AppDatabaseHelper.COLUMN_TYPE, question.getType().toString());
+        values.put(AppDatabaseHelper.COLUMN_QUESTION, question.getQuestion());
+        values.put(AppDatabaseHelper.COLUMN_ANSWER, question.getAnswer());
+        values.put(AppDatabaseHelper.COLUMN_OPTIONS, String.join(",", question.getOptions()));
+        values.put(AppDatabaseHelper.COLUMN_MEDIA, question.getMedia());
+
+        try {
+            long result = db.insert(AppDatabaseHelper.TABLE_QUESTIONS, null, values);
+            if (result == -1) {
+                Log.e("QuestionRepository", "Failed to insert question: " + question.getQuestion());
+            } else {
+                Log.d("QuestionRepository", "Successfully inserted question with ID: " + result);
+            }
+        } catch (Exception e) {
+            Log.e("QuestionRepository", "Error inserting question: " + e.getMessage(), e);
+        } finally {
+            db.close();
+        }
+    }
+
+
+    public boolean isTableEmpty() {
+        db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM " + AppDatabaseHelper.TABLE_QUESTIONS, null);
+        boolean isEmpty = true;
+        if (cursor.moveToFirst()) {
+            isEmpty = cursor.getInt(0) == 0;
+        }
+        cursor.close();
+        db.close();
+        return isEmpty;
+    }
+
+
+    public void populateSampleQuestions(){
         // these are sample question similar to what our database will have
-        questionMap.put("q1", new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you see?",
+        addQuestions(new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you see?",
                 "Refrigerator", new String[]{"Microwave", "Refrigerator", "Oven", "Toaster"}, R.drawable.refrigerator));
-        questionMap.put("q2", new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you see?",
+        addQuestions(new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you see?",
                 "Apple", new String[]{"Banana", "Apple", "Orange", "Grapes"},R.drawable.apple));
-        questionMap.put("q3", new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you see?",
+        addQuestions(new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you see?",
                 "Car", new String[]{"Bus", "Car", "Bicycle", "Truck"},R.drawable.car));
-        questionMap.put("q4", new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you see?",
+        addQuestions(new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you see?",
                 "Toothbrush", new String[]{"Toothbrush", "Toothpaste", "Floss", "Mouthwash"},R.drawable.toothbrush));
-        questionMap.put("q5", new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you see?",
+        addQuestions(new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you see?",
                 "Microwave", new String[]{"Microwave", "Refrigerator", "Oven", "Toaster"},R.drawable.microwave));
-        questionMap.put("q6", new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you see?",
+        addQuestions(new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you see?",
                 "Chair", new String[]{"Table", "Chair", "Sofa", "Bed"},R.drawable.refrigerator));
-        questionMap.put("q7", new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you see?",
+        addQuestions(new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you see?",
                 "Notebook", new String[]{"Notebook", "Folder", "Pen", "Highlighter"},R.drawable.refrigerator));
-        questionMap.put("q8", new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you see?",
+        addQuestions(new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you see?",
                 "Coffee", new String[]{"Tea", "Coffee", "Juice", "Water"},R.drawable.refrigerator));
 
-        questionMap.put("q9", new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you hear?",
+        addQuestions(new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you hear?",
                 "Train", new String[]{"Car", "Train", "Plane", "Bicycle"},R.drawable.refrigerator));
-        questionMap.put("q10", new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you hear?",
+        addQuestions(new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you hear?",
                 "Printer", new String[]{"Tablet", "Phone", "Computer", "Printer"},R.drawable.refrigerator));
-        questionMap.put("q11", new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you hear?",
+        addQuestions(new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you hear?",
                 "Belt", new String[]{"Hat", "Shoes", "Socks", "Belt"},R.drawable.refrigerator));
-        questionMap.put("q12", new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you hear?",
+        addQuestions(new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you hear?",
                 "Spoon", new String[]{"Fork", "Knife", "Spoon", "Plate"},R.drawable.refrigerator));
-        questionMap.put("q13", new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you hear?",
+        addQuestions(new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you hear?",
                 "Purse", new String[]{"Suitcase", "Backpack", "Purse", "Bag"},R.drawable.refrigerator));
-        questionMap.put("q14", new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you hear?",
+        addQuestions(new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you hear?",
                 "Pillow", new String[]{"Blanket", "Pillow", "Sheet", "Mattress"},R.drawable.refrigerator));
     }
 
-    public static synchronized QuestionRepository getInstance(){
-        if (instance == null){
-            instance = new QuestionRepository();
+
+    public MultipleChoiceQuestion getQuestion(int questionId){
+        db = dbHelper.getReadableDatabase();
+
+        Cursor cursor = db.query(AppDatabaseHelper.TABLE_QUESTIONS,null,
+                AppDatabaseHelper.COLUMN_ID + "=?",
+                new String[]{String.valueOf(questionId)},
+                null, null, null);
+        if (cursor.moveToFirst()) {
+            String type = cursor.getString(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COLUMN_TYPE));
+            String question = cursor.getString(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COLUMN_QUESTION));
+            String answer = cursor.getString(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COLUMN_ANSWER));
+            String optionsCSV = cursor.getString(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COLUMN_OPTIONS));
+            int media = cursor.getInt(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COLUMN_MEDIA));
+
+            String[] options = optionsCSV.split(",");
+
+            cursor.close();
+            db.close();
+
+            return new MultipleChoiceQuestion(
+                    MultipleChoiceQuestion.QuestionType.valueOf(type),
+                    question,
+                    answer,
+                    options,
+                    media
+            );
+        } else {
+            db.close();
+            throw new NoSuchElementException("No question found with ID: " + questionId);
         }
-        return instance;
     }
 
-    public MultipleChoiceQuestion getQuestion(String questionId){
-        if (questionId == null){
-            throw new IllegalArgumentException("question ID can't be null");
-        }
-        MultipleChoiceQuestion question = questionMap.get(questionId);
-        if (question == null) {
-            throw new NoSuchElementException("No question found for the given ID: " + questionId);
-        }
-        return question;
-    }
+    public List<MultipleChoiceQuestion> getAllQuestions(){
+        List<MultipleChoiceQuestion> questions = new ArrayList<>();
 
-    public Map<String, MultipleChoiceQuestion> getAllQuestions() {
-        return new HashMap<>(questionMap); // Return a copy to prevent modification
+        db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.query(AppDatabaseHelper.TABLE_QUESTIONS,
+                null,null,null,null,null, null);
+        if (cursor.moveToFirst()) {
+            do {
+                String type = cursor.getString(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COLUMN_TYPE));
+                String question = cursor.getString(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COLUMN_QUESTION));
+                String answer = cursor.getString(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COLUMN_ANSWER));
+                String optionsCSV = cursor.getString(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COLUMN_OPTIONS));
+                int media = cursor.getInt(cursor.getColumnIndexOrThrow(AppDatabaseHelper.COLUMN_MEDIA));
+
+                String[] options = optionsCSV.split(",");
+
+                questions.add(new MultipleChoiceQuestion(
+                        MultipleChoiceQuestion.QuestionType.valueOf(type),
+                        question,
+                        answer,
+                        options,
+                        media
+                ));
+            } while (cursor.moveToNext());
+
+            cursor.close();
+        }
+        db.close();
+        return questions;
     }
 
 }
