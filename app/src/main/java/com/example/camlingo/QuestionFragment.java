@@ -147,7 +147,10 @@ public class QuestionFragment extends Fragment {
                     .into(questionImage);
         }
         else if(question.getType() == MultipleChoiceQuestion.QuestionType.CONTEXT){
-            questionImage.setVisibility(View.INVISIBLE);
+            questionImage.setVisibility(View.VISIBLE);
+            Glide.with(questionImage)
+                    .load(question.getMedia())
+                    .into(questionImage);
         }
 
         // Set the image for the question
