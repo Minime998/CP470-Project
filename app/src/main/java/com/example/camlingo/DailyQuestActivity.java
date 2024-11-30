@@ -44,22 +44,9 @@ public class DailyQuestActivity extends AppCompatActivity {
         StarQuestButton = findViewById(R.id.startQuest_button_DailyQuest);
         ImageView treasureChest = findViewById(R.id.questHomeIcon);
 
-        // check if the icon in top right exists if not download it
-        String fileName = "treasure-chest.png";
-//        if (fileExists(fileName)){
-//            try(FileInputStream fis = openFileInput(fileName)) {
-//                Log.i(TAG,"Found daily quest home icon locally");
-//                iconImg = BitmapFactory.decodeStream(fis);
-//                if (iconImg == null) {
-//                    Log.e(TAG, "Failed to decode local image file, downloading from Storage");
-//                    downloadIconFromStorage()
-//            }
-//        }
-
         Glide.with(treasureChest)
                 .load("https://firebasestorage.googleapis.com/v0/b/camlingo-app.firebasestorage.app/o/treasure-chest.png?alt=media&token=f2781c98-a752-49b4-836d-ca80e64fea52")
                 .into(treasureChest);
-
 
 
         //back button on toolbar

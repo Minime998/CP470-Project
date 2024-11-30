@@ -14,9 +14,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.Objects;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.FirebaseFirestore;
+
+import database.FireBaseQuestionLoader;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,6 +31,10 @@ public class MainActivity extends AppCompatActivity {
         dailyQuestsCard = findViewById(R.id.daily_quests_card);
         leaderboardCard = findViewById(R.id.leaderboard_card);
         Button upload_button = findViewById(R.id.upload_button);
+
+        // daily question questions
+        FireBaseQuestionLoader qloader = new FireBaseQuestionLoader(this);
+        qloader.loadQuestions();
 
         //Upload Button
         upload_button.setOnClickListener(new View.OnClickListener() {

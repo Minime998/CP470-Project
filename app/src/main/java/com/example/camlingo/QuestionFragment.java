@@ -14,6 +14,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 import java.util.List;
 import model.MultipleChoiceQuestion;
@@ -22,6 +24,7 @@ public class QuestionFragment extends Fragment {
     private Button checkBtn;
     private Button continueBtn;
     private Button finishBtn;
+    private Button playAudioButton;
     private RadioButton option1, option2, option3, option4;
     private RadioGroup optionsGroup;
     private TextView questionText;
@@ -55,6 +58,7 @@ public class QuestionFragment extends Fragment {
         // Initialize views
         checkBtn = view.findViewById(R.id.checkBtn);
         continueBtn = view.findViewById(R.id.continueBtn);
+        playAudioButton = view.findViewById(R.id.playAudioButton);
         questionText = view.findViewById(R.id.img_question_text);
         questionImage = view.findViewById(R.id.question_img);
         option1 = view.findViewById(R.id.img_option1);
@@ -93,17 +97,12 @@ public class QuestionFragment extends Fragment {
 
                 }else{
                     Toast.makeText(getActivity(), "Incorrect!", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(getActivity(), currentQuestion.getAnswer(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
         // Continue button click listener
         continueBtn.setOnClickListener(v -> {
-//            if (currentQuestionIndex < questions.size() - 1) {
-//                currentQuestionIndex++;
-//                currentQuestion = updateQuestion();
-//            }
             if(questionCount < 5){
                 currentQuestionIndex++;
                 questionCount++;
@@ -120,6 +119,7 @@ public class QuestionFragment extends Fragment {
                 finishBtn = getView().findViewById(R.id.finishBtn);
                 finishBtn.setVisibility(View.VISIBLE);
 
+                questionImage.setVisibility(View.VISIBLE);
                 questionImage.setImageResource(R.drawable.baseline_check_24);
 
                 setupFinishButton(view); // close activity when finish button clicked
@@ -140,8 +140,18 @@ public class QuestionFragment extends Fragment {
         option3.setText(question.getOptions()[2]);
         option4.setText(question.getOptions()[3]);
 
+        if(question.getType() == MultipleChoiceQuestion.QuestionType.VISUAL){
+            questionImage.setVisibility(View.VISIBLE);
+            Glide.with(questionImage)
+                    .load(question.getMedia())
+                    .into(questionImage);
+        }
+        else if(question.getType() == MultipleChoiceQuestion.QuestionType.CONTEXT){
+            questionImage.setVisibility(View.INVISIBLE);
+        }
+
         // Set the image for the question
-        questionImage.setImageResource(question.getMedia());
+//        questionImage.setImageResource(question.getMedia());
 
         // Reset buttons for next question
         checkBtn.setVisibility(View.VISIBLE);
