@@ -48,6 +48,7 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     implementation("com.google.mlkit:image-labeling:17.0.9")
+    implementation("com.google.mlkit:translate:17.0.3")
     //implementation("com.google.cloud:google-cloud-vision:2.2.5")
     //implementation("com.google.cloud:google-cloud-translate:2.4.3")
     implementation("com.github.bumptech.glide:glide:4.16.0")

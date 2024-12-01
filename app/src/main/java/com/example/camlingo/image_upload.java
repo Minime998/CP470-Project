@@ -28,6 +28,13 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.mlkit.common.model.DownloadConditions;
+import com.google.mlkit.nl.translate.TranslateLanguage;
+import com.google.mlkit.nl.translate.Translation;
+import com.google.mlkit.nl.translate.Translator;
+import com.google.mlkit.nl.translate.TranslatorOptions;
 import com.google.mlkit.vision.common.InputImage;
 import com.google.mlkit.vision.label.ImageLabel;
 import com.google.mlkit.vision.label.ImageLabeler;
@@ -80,14 +87,11 @@ public class image_upload extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
         //grant camera permission
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA)
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 100);
         }
-
-
         // Initialize Buttons
         Button identifyButton = findViewById(R.id.button_identify);
         Button btnTranslateEnglish = findViewById(R.id.btnTranslateEnglish);
@@ -99,16 +103,11 @@ public class image_upload extends AppCompatActivity {
         if(imageToIdentify != null){
             cameraButton.setImageBitmap(imageToIdentify);
         }
-
-
-
         // onClickListener Setup
         identifyButton.setOnClickListener(view -> identifyImage());
-        btnTranslateEnglish.setOnClickListener(view -> showEnglishDescription());
-        //btnTranslateFrench.setOnClickListener(view -> translateToFrench());
+        btnTranslateEnglish.setOnClickListener(view -> translateToEnglish());
+        btnTranslateFrench.setOnClickListener(view -> translateToFrench());
         cameraButton.setOnClickListener(view -> openGallery());
-
-
     }
     //IdentifyImage function for identifyButton
     private void identifyImage() {
@@ -124,7 +123,7 @@ public class image_upload extends AppCompatActivity {
         lbler.process(mlInputImage)
                 .addOnSuccessListener(labels ->{
                     if(labels.isEmpty()){
-                        textView4.setText("No Objects Identified");
+                        textView4.setText("No Objects Selected/Identified");
                     } else {
                         ImageLabel highConfidence = labels.get(0);
                         for (ImageLabel label : labels){
@@ -134,9 +133,9 @@ public class image_upload extends AppCompatActivity {
                         }
                         String tmp = highConfidence.getText();
                         float confidence = highConfidence.getConfidence();
-                        txtOutput.append("Object in the image is a: ").append(tmp);//.append(" : "); //.append(confidence).append("\n");
+                        engText = tmp;
+                        txtOutput.append("English \n\n").append(tmp);//.append(" : "); //.append(confidence).append("\n");
                     }
-
                     textView4.setText(txtOutput.toString());
 
                 })
@@ -145,12 +144,60 @@ public class image_upload extends AppCompatActivity {
                 });
 
     }
-
-
     //Translate to English
-    private void showEnglishDescription() {
+    private void translateToEnglish() {
+        if (freText == null || freText.isEmpty()) {
+            Toast.makeText(this, "No text to translate", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        textView4.setText("English \n\n" +engText);
 
     }
+
+    //Translate to French
+    private void translateToFrench() {
+        // Ensure engText is not null or empty
+        if (engText == null || engText.isEmpty()) {
+            Toast.makeText(this, "No text to translate", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // English to French
+        TranslatorOptions options = new TranslatorOptions.Builder()
+                .setSourceLanguage(TranslateLanguage.ENGLISH)
+                .setTargetLanguage(TranslateLanguage.FRENCH)
+                .build();
+        Translator englishToFrench = Translation.getClient(options);
+
+        DownloadConditions conditions = new DownloadConditions.Builder()
+                .requireWifi()
+                .build();
+
+        // Download the translation model if needed
+        englishToFrench.downloadModelIfNeeded(conditions)
+                .addOnSuccessListener(unused -> {
+                    Log.i(MainActivity.class.getSimpleName(), "Model downloaded");
+                    // Translate the text
+                    englishToFrench.translate(engText)
+                            .addOnSuccessListener(tmpfreText -> {
+                                Log.i(MainActivity.class.getSimpleName(), "Translation successful");
+                                StringBuilder txtOutput = new StringBuilder();
+                                txtOutput.append("French \n\n").append(tmpfreText);
+                                textView4.setText(txtOutput.toString());
+                                freText = tmpfreText;
+                            })
+                            .addOnFailureListener(e -> {
+                                Log.e(MainActivity.class.getSimpleName(), "Translation failed", e);
+                                Toast.makeText(this, "Translation failed", Toast.LENGTH_SHORT).show();
+                            });
+                })
+                .addOnFailureListener(e -> {
+                    Log.e(MainActivity.class.getSimpleName(), "Model download failed", e);
+                    Toast.makeText(this, "Model download failed", Toast.LENGTH_SHORT).show();
+                });
+    }
+
+
 
     //openGallery function for cameraButton
     private void openGallery() {
@@ -158,14 +205,10 @@ public class image_upload extends AppCompatActivity {
         startActivityForResult(intent, 1);
     }
 
-
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
     }
-
 
 }
