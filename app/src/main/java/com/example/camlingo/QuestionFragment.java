@@ -73,8 +73,6 @@ public class QuestionFragment extends Fragment {
                 50 // Height in pixels, adjust as needed for "large"
         ));
 
-
-
         continueBtn = view.findViewById(R.id.continueBtn);
         playAudioButton = view.findViewById(R.id.playAudioButton);
         questionText = view.findViewById(R.id.img_question_text);
@@ -208,6 +206,11 @@ public class QuestionFragment extends Fragment {
         finishBtn.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), DailyQuestActivity.class);
             startActivity(intent);
+
+            // Close the parent activity
+            if (getActivity() != null) {
+                getActivity().finish();
+            }
         });
     }
 }
