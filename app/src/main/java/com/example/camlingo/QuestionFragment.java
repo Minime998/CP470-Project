@@ -1,14 +1,19 @@
 package com.example.camlingo;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -25,9 +30,11 @@ public class QuestionFragment extends Fragment {
     private Button continueBtn;
     private Button finishBtn;
     private Button playAudioButton;
+    private ProgressBar progressBar;
     private RadioButton option1, option2, option3, option4;
     private RadioGroup optionsGroup;
     private TextView questionText;
+    private TextView progressText;
     private ImageView questionImage;
 
     private List<MultipleChoiceQuestion> questions;
@@ -35,6 +42,8 @@ public class QuestionFragment extends Fragment {
     private MultipleChoiceQuestion currentQuestion;
 
     private int questionCount = 0;
+    private int score = 0;
+    private final double totalQuestions = 5.0;
 
     public QuestionFragment() {
         // Required empty public constructor
@@ -57,9 +66,11 @@ public class QuestionFragment extends Fragment {
 
         // Initialize views
         checkBtn = view.findViewById(R.id.checkBtn);
+        progressBar = view.findViewById(R.id.progressBar);
         continueBtn = view.findViewById(R.id.continueBtn);
         playAudioButton = view.findViewById(R.id.playAudioButton);
         questionText = view.findViewById(R.id.img_question_text);
+        progressText = view.findViewById(R.id.progressText);
         questionImage = view.findViewById(R.id.question_img);
         option1 = view.findViewById(R.id.img_option1);
         option2 = view.findViewById(R.id.img_option2);
@@ -94,8 +105,11 @@ public class QuestionFragment extends Fragment {
                     Toast.makeText(getActivity(), "Correct!", Toast.LENGTH_SHORT).show();
                     checkBtn.setVisibility(View.GONE);
                     continueBtn.setVisibility(View.VISIBLE);
+                    score++;
 
                 }else{
+                    checkBtn.setVisibility(View.GONE);
+                    continueBtn.setVisibility(View.VISIBLE);
                     Toast.makeText(getActivity(), "Incorrect!", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -103,12 +117,28 @@ public class QuestionFragment extends Fragment {
 
         // Continue button click listener
         continueBtn.setOnClickListener(v -> {
-            if(questionCount < 5){
+            if(questionCount < totalQuestions){
                 currentQuestionIndex++;
+                // Update progress bar
+                int progress = (int) (( questionCount / totalQuestions) * 100);
+                progressBar.setProgress(progress);
+
                 questionCount++;
+
                 currentQuestion = updateQuestion();
                 optionsGroup.clearCheck();
-            }else {
+
+                Log.i("QuestionFragment", "progress: " + progress);
+            }else if(questionCount == totalQuestions){
+                progressBar.setProgress(100);
+                continueBtn.setText("View results");
+                continueBtn.setBackgroundColor(Color.parseColor("#FF5722"));
+                questionCount++;
+            }
+            else {
+                progressBar.setVisibility(View.GONE);
+                String resultText = "Score: " + score + "/" + 5;
+                progressText.setText(resultText);
                 optionsGroup = getView().findViewById(R.id.optionsGroupImg);
                 questionText.setText(R.string.finished_quest);
                 optionsGroup.setVisibility(View.GONE);
@@ -128,6 +158,7 @@ public class QuestionFragment extends Fragment {
 
         return view;
     }
+
 
     private MultipleChoiceQuestion updateQuestion() {
         // Get the current question

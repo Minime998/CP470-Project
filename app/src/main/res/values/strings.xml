@@ -37,6 +37,7 @@
     <string name="finish">Finish</string>
     <string name="finished_quest">You\'ve completed all tasks!</string>
     <string name="play_sound">Play Sound</string>
+    <string name="progress">Progress</string>
 
 
 </resources>
