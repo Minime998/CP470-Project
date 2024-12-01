@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -34,7 +35,7 @@ public class QuestionFragment extends Fragment {
     private RadioButton option1, option2, option3, option4;
     private RadioGroup optionsGroup;
     private TextView questionText;
-    private TextView progressText;
+    private TextView scoreText;
     private ImageView questionImage;
 
     private List<MultipleChoiceQuestion> questions;
@@ -67,10 +68,17 @@ public class QuestionFragment extends Fragment {
         // Initialize views
         checkBtn = view.findViewById(R.id.checkBtn);
         progressBar = view.findViewById(R.id.progressBar);
+        progressBar.setLayoutParams(new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                50 // Height in pixels, adjust as needed for "large"
+        ));
+
+
+
         continueBtn = view.findViewById(R.id.continueBtn);
         playAudioButton = view.findViewById(R.id.playAudioButton);
         questionText = view.findViewById(R.id.img_question_text);
-        progressText = view.findViewById(R.id.progressText);
+        scoreText = view.findViewById(R.id.scoreText);
         questionImage = view.findViewById(R.id.question_img);
         option1 = view.findViewById(R.id.img_option1);
         option2 = view.findViewById(R.id.img_option2);
@@ -138,7 +146,8 @@ public class QuestionFragment extends Fragment {
             else {
                 progressBar.setVisibility(View.GONE);
                 String resultText = "Score: " + score + "/" + 5;
-                progressText.setText(resultText);
+                scoreText.setText(resultText);
+                scoreText.setVisibility(View.VISIBLE);
                 optionsGroup = getView().findViewById(R.id.optionsGroupImg);
                 questionText.setText(R.string.finished_quest);
                 optionsGroup.setVisibility(View.GONE);
