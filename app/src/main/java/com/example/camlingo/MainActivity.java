@@ -52,15 +52,6 @@ public class MainActivity extends AppCompatActivity {
         FireBaseQuestionLoader qloader = new FireBaseQuestionLoader(this);
         qloader.loadQuestions();
 
-        //Upload Button
-        upload_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, image_upload.class
-                ));
-            }
-        });
-
         // Set up the toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
