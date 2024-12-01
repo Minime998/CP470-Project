@@ -9,21 +9,64 @@ import androidx.cardview.widget.CardView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import android.widget.PopupMenu;
 
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import database.FireBaseQuestionLoader;
 
 public class MainActivity extends AppCompatActivity {
 
     private CardView continueLearningCard, dailyQuestsCard, leaderboardCard;
+    private  FirebaseAuth mAuth;
+    private TextView userNameTxtView;
+    private FirebaseUser user;
+    private final String emailRegex =  "^([^@]+)"; // Match everything before '@';
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // reference parent activity
+        View parentLayout = findViewById(R.id.mainActivity);
+
+        // initialize auth
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
+        userNameTxtView = findViewById(R.id.userName);
+
+        // if current user is null redirect user to login activity
+        if(user == null){
+            // start login activity
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }else{
+            Pattern pattern = Pattern.compile(emailRegex);
+            Matcher matcher = pattern.matcher(user.getEmail());
+
+            if (matcher.find()){
+                String userName = matcher.group(1);
+                userNameTxtView.setText(userName); // Get the first capturing group
+                String message = "Welcome back " + userName + "!";
+                Snackbar.make(findViewById(R.id.cardContainer), message, Snackbar.LENGTH_SHORT)
+                        .setAnchorView(findViewById(R.id.cardContainer))
+                        .setAction("Action", null)
+                        .show();
+            }
+        }
 
         ImageView animated_camera = findViewById(R.id.camera_gif);
         Glide.with(this)
@@ -45,7 +88,9 @@ public class MainActivity extends AppCompatActivity {
         dailyQuestsCard = findViewById(R.id.daily_quests_card);
         leaderboardCard = findViewById(R.id.leaderboard_card);
 
-
+        // daily question questions
+        FireBaseQuestionLoader qloader = new FireBaseQuestionLoader(this);
+        qloader.loadQuestions();
 
         // Set up the toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -107,10 +152,13 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
+        // logout the user when they click logout
         if (id == R.id.logout) {
+            FirebaseAuth.getInstance().signOut();
             // Handle logout action
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
+            finish();
             return true;
         }
 

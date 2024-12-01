@@ -42,19 +42,15 @@ public class DailyQuestsTasks extends AppCompatActivity {
         // get questions from the repository
         QuestionRepository repository = new QuestionRepository(this);
 
-        // populate database with sample questions
-        if (repository.isTableEmpty()) {
-            repository.populateSampleQuestions();
-            Log.d("QuestionRepository", "Sample questions populated because the table was empty.");
-        } else {
-            Log.d("QuestionRepository", "Table already contains data.");
-        }
 
         List<MultipleChoiceQuestion> questions = repository.getAllQuestions();
+        for(MultipleChoiceQuestion question : questions){
+            Log.i("FireBaseQuestionLoader", question.getType() + ", " + question.getMedia());
+        }
 
 
         // pass question to fragment
-        ImageQuestionFragment fragment = ImageQuestionFragment.newInstance(questions);
+        QuestionFragment fragment = QuestionFragment.newInstance(questions);
 
 
         // display the fragment

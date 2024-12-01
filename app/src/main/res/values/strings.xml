@@ -4,6 +4,7 @@
     <string name="prompt_email">Email</string>
     <string name="prompt_username">Username</string>
     <string name="prompt_password">Password</string>
+    <string name="prompt_password2">Confirm Password</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome!"</string>
@@ -38,12 +39,15 @@
     <string name="continue_btn_text">Continue</string>
     <string name="finish">Finish</string>
     <string name="finished_quest">You\'ve completed all tasks!</string>
+    <string name="play_sound">Play Sound</string>
+    <string name="progress">Progress</string>
 
     <!-- Strings related to Main Activity -->
-    <string name="learning">Continue Learning</string>
+    <string name="learning">My Learning</string>
     <string name="quest">Daily Quests</string>
     <string name="leaderboard">Leaderboard</string>
     <string name="john">Welcome,\nJohn Lingo</string>
+    <string name="register">Register</string>
 
 
 </resources>

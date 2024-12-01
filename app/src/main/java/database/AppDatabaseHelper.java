@@ -27,7 +27,7 @@ public class AppDatabaseHelper extends SQLiteOpenHelper {
                     COLUMN_QUESTION + " TEXT NOT NULL, " +
                     COLUMN_ANSWER + " TEXT NOT NULL, " +
                     COLUMN_OPTIONS + " TEXT NOT NULL, " +
-                    COLUMN_MEDIA + " INTEGER NOT NULL" +
+                    COLUMN_MEDIA + " TEXT NOT NULL" +
                     ");";
 
     public AppDatabaseHelper(Context context){

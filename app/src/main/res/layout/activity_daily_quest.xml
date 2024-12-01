@@ -52,12 +52,13 @@
                 </LinearLayout>
 
                 <ImageView
+                    android:id="@+id/questHomeIcon"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="end"
                     android:paddingEnd="10dp"
                     android:contentDescription="@string/todays_quest"
-                    android:src="@drawable/treasure_chest" />
+                    />
             </GridLayout>
 
             <!-- Additional CardViews -->
