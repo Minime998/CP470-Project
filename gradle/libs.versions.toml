@@ -1,6 +1,7 @@
 [versions]
-agp = "8.7.1"
+agp = "8.7.2"
 firebaseBom = "33.6.0"
+imageLabelling = "17.0.3"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
@@ -14,6 +15,7 @@ lifecycleViewmodelKtx = "2.6.1"
 
 [libraries]
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
+image-labelling = { module = "com.google.mlkit:image-labelling", version.ref = "imageLabelling" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -27,4 +29,3 @@ lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-view
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
-
