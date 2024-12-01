@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "818416766946",
+    "project_id": "camlingo-app",
+    "storage_bucket": "camlingo-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:818416766946:android:188d006520d98d125db3bb",
+        "android_client_info": {
+          "package_name": "com.example.camlingo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBA__3z-Y495cg0YibjIFa9G5nKwGWfugg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

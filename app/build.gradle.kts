@@ -1,5 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
+
+    // Add the Google services Gradle plugin
+    id("com.google.gms.google-services")
 }
 
 
@@ -44,6 +47,26 @@ dependencies {
     implementation(libs.annotation)
     implementation(libs.lifecycle.livedata.ktx)
     implementation(libs.lifecycle.viewmodel.ktx)
+
+    // Import the Firebase BoM
+    implementation(platform(libs.firebase.bom))
+    implementation("com.google.firebase:firebase-database")
+
+    // Firebase Firestore
+    implementation("com.google.firebase:firebase-firestore")
+    // Firebase Storage
+    implementation ("com.google.firebase:firebase-storage:21.0.1")
+
+    // TODO: Add the dependencies for Firebase products you want to use
+    // When using the BoM, don't specify versions in Firebase dependencies
+    implementation("com.google.firebase:firebase-analytics")
+
+    // Latest Glide version
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    // Glide annotation processor
+    annotationProcessor("com.github.bumptech.glide:compiler:4.15.1")
+
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

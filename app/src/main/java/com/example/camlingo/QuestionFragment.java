@@ -1,31 +1,40 @@
 package com.example.camlingo;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
 import androidx.fragment.app.Fragment;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 import java.util.List;
 import model.MultipleChoiceQuestion;
 
-public class ImageQuestionFragment extends Fragment {
+public class QuestionFragment extends Fragment {
     private Button checkBtn;
     private Button continueBtn;
     private Button finishBtn;
+    private Button playAudioButton;
+    private ProgressBar progressBar;
     private RadioButton option1, option2, option3, option4;
     private RadioGroup optionsGroup;
     private TextView questionText;
+    private TextView progressText;
     private ImageView questionImage;
 
     private List<MultipleChoiceQuestion> questions;
@@ -33,14 +42,16 @@ public class ImageQuestionFragment extends Fragment {
     private MultipleChoiceQuestion currentQuestion;
 
     private int questionCount = 0;
+    private int score = 0;
+    private final double totalQuestions = 5.0;
 
-    public ImageQuestionFragment() {
+    public QuestionFragment() {
         // Required empty public constructor
     }
 
     // Fragment receives questions
-    public static ImageQuestionFragment newInstance(List<MultipleChoiceQuestion> questions) {
-        ImageQuestionFragment fragment = new ImageQuestionFragment();
+    public static QuestionFragment newInstance(List<MultipleChoiceQuestion> questions) {
+        QuestionFragment fragment = new QuestionFragment();
         Bundle args = new Bundle();
         args.putSerializable("questions", new ArrayList<>(questions));
         fragment.setArguments(args);
@@ -51,12 +62,15 @@ public class ImageQuestionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_image_question, container, false);
+        View view = inflater.inflate(R.layout.fragment_question, container, false);
 
         // Initialize views
         checkBtn = view.findViewById(R.id.checkBtn);
+        progressBar = view.findViewById(R.id.progressBar);
         continueBtn = view.findViewById(R.id.continueBtn);
+        playAudioButton = view.findViewById(R.id.playAudioButton);
         questionText = view.findViewById(R.id.img_question_text);
+        progressText = view.findViewById(R.id.progressText);
         questionImage = view.findViewById(R.id.question_img);
         option1 = view.findViewById(R.id.img_option1);
         option2 = view.findViewById(R.id.img_option2);
@@ -91,26 +105,40 @@ public class ImageQuestionFragment extends Fragment {
                     Toast.makeText(getActivity(), "Correct!", Toast.LENGTH_SHORT).show();
                     checkBtn.setVisibility(View.GONE);
                     continueBtn.setVisibility(View.VISIBLE);
+                    score++;
 
                 }else{
+                    checkBtn.setVisibility(View.GONE);
+                    continueBtn.setVisibility(View.VISIBLE);
                     Toast.makeText(getActivity(), "Incorrect!", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(getActivity(), currentQuestion.getAnswer(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
         // Continue button click listener
         continueBtn.setOnClickListener(v -> {
-//            if (currentQuestionIndex < questions.size() - 1) {
-//                currentQuestionIndex++;
-//                currentQuestion = updateQuestion();
-//            }
-            if(questionCount < 5){
+            if(questionCount < totalQuestions){
                 currentQuestionIndex++;
+                // Update progress bar
+                int progress = (int) (( questionCount / totalQuestions) * 100);
+                progressBar.setProgress(progress);
+
                 questionCount++;
+
                 currentQuestion = updateQuestion();
                 optionsGroup.clearCheck();
-            }else {
+
+                Log.i("QuestionFragment", "progress: " + progress);
+            }else if(questionCount == totalQuestions){
+                progressBar.setProgress(100);
+                continueBtn.setText("View results");
+                continueBtn.setBackgroundColor(Color.parseColor("#FF5722"));
+                questionCount++;
+            }
+            else {
+                progressBar.setVisibility(View.GONE);
+                String resultText = "Score: " + score + "/" + 5;
+                progressText.setText(resultText);
                 optionsGroup = getView().findViewById(R.id.optionsGroupImg);
                 questionText.setText(R.string.finished_quest);
                 optionsGroup.setVisibility(View.GONE);
@@ -121,6 +149,7 @@ public class ImageQuestionFragment extends Fragment {
                 finishBtn = getView().findViewById(R.id.finishBtn);
                 finishBtn.setVisibility(View.VISIBLE);
 
+                questionImage.setVisibility(View.VISIBLE);
                 questionImage.setImageResource(R.drawable.baseline_check_24);
 
                 setupFinishButton(view); // close activity when finish button clicked
@@ -129,6 +158,7 @@ public class ImageQuestionFragment extends Fragment {
 
         return view;
     }
+
 
     private MultipleChoiceQuestion updateQuestion() {
         // Get the current question
@@ -141,8 +171,21 @@ public class ImageQuestionFragment extends Fragment {
         option3.setText(question.getOptions()[2]);
         option4.setText(question.getOptions()[3]);
 
+        if(question.getType() == MultipleChoiceQuestion.QuestionType.VISUAL){
+            questionImage.setVisibility(View.VISIBLE);
+            Glide.with(questionImage)
+                    .load(question.getMedia())
+                    .into(questionImage);
+        }
+        else if(question.getType() == MultipleChoiceQuestion.QuestionType.CONTEXT){
+            questionImage.setVisibility(View.VISIBLE);
+            Glide.with(questionImage)
+                    .load(question.getMedia())
+                    .into(questionImage);
+        }
+
         // Set the image for the question
-        questionImage.setImageResource(question.getMedia());
+//        questionImage.setImageResource(question.getMedia());
 
         // Reset buttons for next question
         checkBtn.setVisibility(View.VISIBLE);
