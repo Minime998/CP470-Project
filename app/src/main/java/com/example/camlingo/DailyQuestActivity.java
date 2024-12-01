@@ -49,16 +49,6 @@ public class DailyQuestActivity extends AppCompatActivity {
                 .into(treasureChest);
 
 
-        //back button on toolbar
-        Toolbar toolbar = findViewById(R.id.dailyQuest_toolbar);
-        setSupportActionBar(toolbar);
-
-        // Clear default title
-        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
-
-        //this adds the back button, so when pressed it goes back to the login page
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
         //"Claim Now" button click
         ClaimButton.setOnClickListener(new View.OnClickListener() {

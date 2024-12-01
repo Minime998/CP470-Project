@@ -2,7 +2,8 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.CamLingo" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/blue_dark</item>
+        <item name="popupMenuStyle">@style/CustomPopupMenu</item>
     </style>
 
     <style name="Theme.CamLingo" parent="Base.Theme.CamLingo" />

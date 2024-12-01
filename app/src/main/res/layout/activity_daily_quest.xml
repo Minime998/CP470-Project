@@ -5,40 +5,14 @@
     android:id="@+id/daily_quests"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Toolbar -->
-        <androidx.appcompat.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/dailyQuest_toolbar"
-            android:background="@color/blue_dark"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:contentInsetStart="10dp">
-
-            <ImageView
-                android:id="@+id/toolbar_pfp"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:src="@drawable/baseline_person_24_white"
-                android:layout_gravity="start"
-                android:clickable="true" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Welcome,\nJohn Lingo"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                android:fontFamily="@font/rodin" />
-
-        </androidx.appcompat.widget.Toolbar>
 
         <!-- Content Layouts -->
 
@@ -82,6 +56,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="end"
+                    android:paddingEnd="10dp"
                     android:contentDescription="@string/todays_quest"
                     />
             </GridLayout>
