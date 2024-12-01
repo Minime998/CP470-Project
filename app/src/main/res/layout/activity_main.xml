@@ -2,6 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/mainActivity"
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
@@ -27,6 +28,7 @@
             android:src="@drawable/baseline_person_24_white" />
 
         <TextView
+            android:id="@+id/userName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/rodin"
@@ -38,13 +40,14 @@
 
     <!-- Main content area centered below the toolbar -->
     <LinearLayout
+        android:id="@+id/cardContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="12dp">
-        android:background="@drawable/gradient1"
+        <!---android:background="@drawable/gradient1"-->
 
         <!-- First Row: Continue Learning -->
         <androidx.cardview.widget.CardView
