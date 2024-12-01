@@ -42,7 +42,7 @@
     <string name="progress">Progress</string>
 
     <!-- Strings related to Main Activity -->
-    <string name="learning">Continue Learning</string>
+    <string name="learning">My Learning</string>
     <string name="quest">Daily Quests</string>
     <string name="leaderboard">Leaderboard</string>
     <string name="john">Welcome,\nJohn Lingo</string>
