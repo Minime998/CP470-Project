@@ -4,16 +4,21 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.renderscript.ScriptGroup;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
@@ -21,6 +26,26 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.bumptech.glide.Glide;
+import com.google.mlkit.vision.common.InputImage;
+import com.google.mlkit.vision.label.ImageLabel;
+import com.google.mlkit.vision.label.ImageLabeler;
+import com.google.mlkit.vision.label.ImageLabeling;
+import com.google.mlkit.vision.label.defaults.ImageLabelerOptions;
+
+import org.json.JSONObject;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import okhttp3.MediaType;
 
 //import com.bumptech.glide.Glide;
 //import com.example.camlingo.gpt_api.OpenAI;
@@ -32,17 +57,19 @@ import androidx.core.view.WindowInsetsCompat;
 
 
 public class image_upload extends AppCompatActivity {
-
-    private static final int REQUEST_IMAGE_CAPTURE = 1;
     private ImageButton cameraButton;
-    private Bitmap capturedBitmap;//store the captured image
+    private TextView textView4;
+    private Bitmap imageToIdentify;
+    private String engText;
+    private String freText;
+    String fileName = "testImg1.jpg";
+    private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+    //String API_URL = "https://api.openai.com/v1/chat/completions";
+    //String API_KEY = "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";
+    //private static final String BASE_URL = "https://api.openai.com/v1/models/gpt-4o-mini/predict";
+    //private static final String API_KEY = "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"; // Replace with your actual API key
 
-    private ImageView displayImageView; // To display the captured image
 
-    private static final String TAG = image_upload.class.getSimpleName();
-    String API_URL = "https://api.openai.com/v1/models/gpt-4o-mini/predict";
-    String API_KEY = "Sanitized";
-    String IMG_URL = "https://images.pexels.com/photos/53977/eagle-owl-raptor-falconry-owl-53977.jpeg?cs=srgb&dl=pexels-pixabay-53977.jpg&fm=jpg";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,66 +87,85 @@ public class image_upload extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 100);
         }
 
-        // Initialize ImageButton
+
+        // Initialize Buttons
+        Button identifyButton = findViewById(R.id.button_identify);
+        Button btnTranslateEnglish = findViewById(R.id.btnTranslateEnglish);
+        Button btnTranslateFrench = findViewById(R.id.btnTranslateFrench);
+        textView4 = findViewById(R.id.textView4);
+
         cameraButton = findViewById(R.id.imageButton2);
-
-        // Set OnClickListener for the ImageButton
-        cameraButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(cameraIntent, REQUEST_IMAGE_CAPTURE);
-            }
-        });
-
-
-        //Glide.with(this).load(IMG_URL).into(identify_view);
-
-        //identify button click
-        Button identify_button = findViewById(R.id.button_identify);
-        identify_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                //this part is for handling the image being uploaded
-                //something like
-                if (capturedBitmap != null) {
-                    // Call sendImage with the captured bitmap
-                    sendImage(capturedBitmap);
-                } else {
-                    Log.e(TAG, "No image captured to identify");
-                }
-
-
-                //the following code are original from before TTDoorTT edit
-                //sendImage(IMG_URL);
-
-            }
-        });
-
-    }
-
-    // Handle the result of the camera intent
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            if (data != null && data.getExtras() != null) {
-                capturedBitmap = (Bitmap) data.getExtras().get("data");
-                if (capturedBitmap != null) {
-                    // Set the captured image as the ImageButton content
-                    cameraButton.setImageBitmap(capturedBitmap);
-                }
-            } else {
-                Log.e(TAG, "No image data returned from camera");
-            }
+        imageToIdentify = AssetUtilities.assetsToBitmap(this,fileName);
+        if(imageToIdentify != null){
+            cameraButton.setImageBitmap(imageToIdentify);
         }
+
+
+
+        // onClickListener Setup
+        identifyButton.setOnClickListener(view -> identifyImage());
+        btnTranslateEnglish.setOnClickListener(view -> showEnglishDescription());
+        //btnTranslateFrench.setOnClickListener(view -> translateToFrench());
+        cameraButton.setOnClickListener(view -> openGallery());
+
+
+    }
+    //IdentifyImage function for identifyButton
+    private void identifyImage() {
+        if (imageToIdentify == null){
+            Toast.makeText(this, "No Image Selected", Toast.LENGTH_SHORT).show();
+
+        }
+
+        ImageLabeler lbler = ImageLabeling.getClient(ImageLabelerOptions.DEFAULT_OPTIONS);
+        InputImage mlInputImage = InputImage.fromBitmap(imageToIdentify,0);
+        StringBuilder txtOutput = new StringBuilder();
+
+        lbler.process(mlInputImage)
+                .addOnSuccessListener(labels ->{
+                    if(labels.isEmpty()){
+                        textView4.setText("No Objects Identified");
+                    } else {
+                        ImageLabel highConfidence = labels.get(0);
+                        for (ImageLabel label : labels){
+                            if(label.getConfidence() > highConfidence.getConfidence()){
+                                highConfidence = label;
+                            }
+                        }
+                        String tmp = highConfidence.getText();
+                        float confidence = highConfidence.getConfidence();
+                        txtOutput.append("Object in the image is a: ").append(tmp);//.append(" : "); //.append(confidence).append("\n");
+                    }
+
+                    textView4.setText(txtOutput.toString());
+
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this,"Identification Failed",Toast.LENGTH_SHORT).show();
+                });
+
     }
 
 
-    public void sendImage(Bitmap imageBitmap){
-        Log.i(TAG, "sendImage: ");
-        Toast.makeText(image_upload.this, "Identify object photo Clicked", Toast.LENGTH_SHORT).show();
+    //Translate to English
+    private void showEnglishDescription() {
+
     }
+
+    //openGallery function for cameraButton
+    private void openGallery() {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, 1);
+    }
+
+
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+    }
+
 
 }
