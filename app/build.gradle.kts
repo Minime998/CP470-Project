@@ -51,6 +51,7 @@ dependencies {
     // Import the Firebase BoM
     implementation(platform(libs.firebase.bom))
     implementation("com.google.firebase:firebase-database")
+    implementation("com.google.firebase:firebase-auth-ktx")
 
     // Firebase Firestore
     implementation("com.google.firebase:firebase-firestore")
