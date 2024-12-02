@@ -7,10 +7,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
-import java.util.Arrays;
 import java.util.List;
-
-import model.LessonModel;
 import model.MultipleChoiceQuestion;
 import repository.QuestionRepository;
 

@@ -11,7 +11,6 @@ import java.util.List;
 
 import database.AppDatabaseHelper;
 import model.LessonModel;
-import model.MultipleChoiceQuestion;
 
 public class LessonRepository {
     private final AppDatabaseHelper dbHelper;
@@ -52,9 +51,6 @@ public class LessonRepository {
     public List<LessonModel> getAllLessonsItems(){
         List<LessonModel> lessonItems = new ArrayList<>();
         db = dbHelper.getReadableDatabase();
-
-        String orderBy = "RANDOM()"; // Order by random
-        String limit = "5";
 
         Cursor cursor = db.rawQuery("SELECT * FROM " + tableName, null);
         if (cursor.moveToFirst()) {
