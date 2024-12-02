@@ -8,65 +8,32 @@ import androidx.cardview.widget.CardView;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
-import android.widget.PopupMenu;
-
 import java.util.Objects;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import database.FireBaseQuestionLoader;
+import utils.AppUser;
 
 public class MainActivity extends AppCompatActivity {
-
-    private CardView continueLearningCard, dailyQuestsCard, leaderboardCard;
-    private  FirebaseAuth mAuth;
-    private TextView userNameTxtView;
-    private FirebaseUser user;
-    private final String emailRegex =  "^([^@]+)"; // Match everything before '@';
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // reference parent activity
-        View parentLayout = findViewById(R.id.mainActivity);
+        // Find CardViews by ID
+        CardView myLearningCard = findViewById(R.id.continue_learning_card);
+        CardView dailyQuestsCard = findViewById(R.id.daily_quests_card);
+        CardView leaderboardCard = findViewById(R.id.leaderboard_card);
+        TextView userNameTxtView = findViewById(R.id.userName);
 
-        // initialize auth
-        mAuth = FirebaseAuth.getInstance();
-        user = mAuth.getCurrentUser();
-        userNameTxtView = findViewById(R.id.userName);
-
-        // if current user is null redirect user to login activity
-        if(user == null){
-            // start login activity
-            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-            startActivity(intent);
-            finish();
-        }else{
-            Pattern pattern = Pattern.compile(emailRegex);
-            Matcher matcher = pattern.matcher(user.getEmail());
-
-            if (matcher.find()){
-                String userName = matcher.group(1);
-                userNameTxtView.setText(userName); // Get the first capturing group
-                String message = "Welcome back " + userName + "!";
-                Snackbar.make(findViewById(R.id.cardContainer), message, Snackbar.LENGTH_SHORT)
-                        .setAnchorView(findViewById(R.id.cardContainer))
-                        .setAction("Action", null)
-                        .show();
-            }
-        }
+        // load user info in tool bar
+        AppUser user = new AppUser(MainActivity.this);
+        user.getUserInfo(userNameTxtView,true); // true shows "welcome back snackbar"
 
         ImageView animated_camera = findViewById(R.id.camera_gif);
         Glide.with(this)
@@ -83,11 +50,6 @@ public class MainActivity extends AppCompatActivity {
                 .load(R.drawable.leaderboard)
                 .into(animated_leaderboard);
 
-        // Find CardViews by ID
-        continueLearningCard = findViewById(R.id.continue_learning_card);
-        dailyQuestsCard = findViewById(R.id.daily_quests_card);
-        leaderboardCard = findViewById(R.id.leaderboard_card);
-
         // daily question questions
         FireBaseQuestionLoader qloader = new FireBaseQuestionLoader(this);
         qloader.loadQuestions();
@@ -99,38 +61,25 @@ public class MainActivity extends AppCompatActivity {
         // Clear default title
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 
-
-
-        dailyQuestsCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "DailyQuest Clicked", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(MainActivity.this, DailyQuestActivity.class));
-            }
+        dailyQuestsCard.setOnClickListener(v -> {
+            //Toast.makeText(MainActivity.this, "DailyQuest Clicked", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(MainActivity.this, DailyQuestActivity.class));
         });
 
-        //ContinueLearning button click
-        continueLearningCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                //no activity to open yet, just a placeholder here
-                Intent intent = new Intent(MainActivity.this, image_upload.class);
-                startActivity(intent);
-                Toast.makeText(MainActivity.this, "continueLearningCard Clicked", Toast.LENGTH_SHORT).show();
-            }
+        // My Learning button click
+        myLearningCard.setOnClickListener(v -> {
+            //no activity to open yet, just a placeholder here
+            Intent intent = new Intent(MainActivity.this, MyLeaningActivity.class);
+            startActivity(intent);
         });
 
-        //leader board card button click
-        leaderboardCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //no activity to open yet, just a placeholder here
-                //Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                //startActivity(intent);
-                Toast.makeText(MainActivity.this, "leaderboardCard Clicked", Toast.LENGTH_SHORT).show();
+        // Leader board card button click
+        leaderboardCard.setOnClickListener(v -> {
+            //no activity to open yet, just a placeholder here
+            //Intent intent = new Intent(MainActivity.this, MainActivity.class);
+            //startActivity(intent);
+            Toast.makeText(MainActivity.this, "leaderboardCard Clicked", Toast.LENGTH_SHORT).show();
 
-            }
         });
 
     }

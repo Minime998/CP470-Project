@@ -8,35 +8,9 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <!-- Toolbar -->
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/blue_dark"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/CustomPopupMenu"
-        app:contentInsetStart="10dp"
-        app:contentInsetEnd="0dp">
-
-        <ImageView
-            android:id="@+id/toolbar_pfp"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_gravity="start"
-            android:clickable="true"
-            android:src="@drawable/baseline_person_24_white" />
-
-        <TextView
-            android:id="@+id/userName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/rodin"
-            android:text="@string/john"
-            android:textColor="@color/white"
-            android:textSize="12sp" />
-
-    </androidx.appcompat.widget.Toolbar>
+    <!-- Include toolbar -->
+    <include
+        layout="@layout/toolbar_layout" />
 
     <!-- Main content area centered below the toolbar -->
     <LinearLayout

@@ -68,11 +68,6 @@ public class QuestionFragment extends Fragment {
         // Initialize views
         checkBtn = view.findViewById(R.id.checkBtn);
         progressBar = view.findViewById(R.id.progressBar);
-        progressBar.setLayoutParams(new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                50 // Height in pixels, adjust as needed for "large"
-        ));
-
         continueBtn = view.findViewById(R.id.continueBtn);
         playAudioButton = view.findViewById(R.id.playAudioButton);
         questionText = view.findViewById(R.id.img_question_text);
@@ -99,7 +94,7 @@ public class QuestionFragment extends Fragment {
 
             // check selected answer if it's correct
             if(selectedId == -1){
-                Toast.makeText(getActivity(), "You must select an option", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Please select an answer", Toast.LENGTH_SHORT).show();
             }else{
 
                 // get the selected option
