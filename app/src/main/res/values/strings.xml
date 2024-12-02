@@ -49,5 +49,10 @@
     <string name="john">Welcome,\nJohn Lingo</string>
     <string name="register">Register</string>
 
+    <!--  My Learning Activity  -->
+    <string name="my_learning_option1">English Basics</string>
+    <string name="my_learning_option2">Picture Learning</string>
+    <string name="my_account_texy">My Account</string>
+
 
 </resources>

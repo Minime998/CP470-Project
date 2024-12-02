@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -34,7 +35,7 @@ public class QuestionFragment extends Fragment {
     private RadioButton option1, option2, option3, option4;
     private RadioGroup optionsGroup;
     private TextView questionText;
-    private TextView progressText;
+    private TextView scoreText;
     private ImageView questionImage;
 
     private List<MultipleChoiceQuestion> questions;
@@ -70,7 +71,7 @@ public class QuestionFragment extends Fragment {
         continueBtn = view.findViewById(R.id.continueBtn);
         playAudioButton = view.findViewById(R.id.playAudioButton);
         questionText = view.findViewById(R.id.img_question_text);
-        progressText = view.findViewById(R.id.progressText);
+        scoreText = view.findViewById(R.id.scoreText);
         questionImage = view.findViewById(R.id.question_img);
         option1 = view.findViewById(R.id.img_option1);
         option2 = view.findViewById(R.id.img_option2);
@@ -93,7 +94,7 @@ public class QuestionFragment extends Fragment {
 
             // check selected answer if it's correct
             if(selectedId == -1){
-                Toast.makeText(getActivity(), "You must select an option", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Please select an answer", Toast.LENGTH_SHORT).show();
             }else{
 
                 // get the selected option
@@ -138,7 +139,8 @@ public class QuestionFragment extends Fragment {
             else {
                 progressBar.setVisibility(View.GONE);
                 String resultText = "Score: " + score + "/" + 5;
-                progressText.setText(resultText);
+                scoreText.setText(resultText);
+                scoreText.setVisibility(View.VISIBLE);
                 optionsGroup = getView().findViewById(R.id.optionsGroupImg);
                 questionText.setText(R.string.finished_quest);
                 optionsGroup.setVisibility(View.GONE);
@@ -199,6 +201,11 @@ public class QuestionFragment extends Fragment {
         finishBtn.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), DailyQuestActivity.class);
             startActivity(intent);
+
+            // Close the parent activity
+            if (getActivity() != null) {
+                getActivity().finish();
+            }
         });
     }
 }

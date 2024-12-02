@@ -17,9 +17,12 @@
         android:theme="@style/Base.Theme.CamLingo"
         tools:targetApi="31">
         <activity
+            android:name=".MyLeaningActivity"
+            android:exported="false" />
+        <activity
             android:name=".RegisterActivity"
             android:exported="false"
-            android:theme="@style/Theme.Material3.Light.NoActionBar"/>
+            android:theme="@style/Theme.Material3.Light.NoActionBar" />
         <activity
             android:name=".image_upload"
             android:exported="true"
