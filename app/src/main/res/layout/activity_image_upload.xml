@@ -29,8 +29,11 @@
 
     <ImageButton
         android:id="@+id/imageButton2"
-        android:layout_width="274dp"
-        android:layout_height="158dp"
+        android:layout_width="280dp"
+        android:layout_height="196dp"
+        android:layout_marginTop="16dp"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
         android:src="@android:drawable/ic_menu_camera"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -47,7 +50,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.259" />
+        app:layout_constraintVertical_bias="0.363" />
 
     <Button
         android:id="@+id/btnTranslateEnglish"
@@ -75,7 +78,7 @@
         android:id="@+id/textView4"
         android:layout_width="389dp"
         android:layout_height="340dp"
-        android:layout_marginBottom="120dp"
+        android:layout_marginBottom="84dp"
         android:fontFamily="sans-serif"
         android:textAlignment="center"
         android:textSize="48sp"
@@ -83,7 +86,6 @@
         android:typeface="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.272"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
