@@ -59,6 +59,10 @@ public class MyLeaningActivity extends AppCompatActivity {
                 .load(R.drawable.backpack)
                 .into(animated_bag);
 
+        // Click on english basics card
+        english_basics_card.setOnClickListener(v ->{
+            startActivity(new Intent(MyLeaningActivity.this, LessonsActivity.class));
+        });
 
         // Click on picture learning
         picture_learning_card.setOnClickListener(v -> {

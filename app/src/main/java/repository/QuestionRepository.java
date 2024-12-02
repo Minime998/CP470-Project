@@ -1,7 +1,5 @@
 package repository;
 
-import com.example.camlingo.R;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,8 +16,6 @@ import database.AppDatabaseHelper;
 import model.MultipleChoiceQuestion;
 
 public class QuestionRepository {
-    private static QuestionRepository instance;
-    private final Map<String, MultipleChoiceQuestion> questionMap = new HashMap<>();
     private final AppDatabaseHelper dbHelper;
     private SQLiteDatabase db;
 
@@ -29,7 +25,7 @@ public class QuestionRepository {
         dbHelper = new AppDatabaseHelper(context);
     }
 
-    // method to add a question to database using MCQ object
+    // method to add a question to 'questions' table using MCQ object
     public void addQuestion(MultipleChoiceQuestion question) {
         db = dbHelper.getWritableDatabase();
 
@@ -70,43 +66,6 @@ public class QuestionRepository {
         db.close();
         return isEmpty;
     }
-
-
-//    public void populateSampleQuestions(){
-//        // these are sample question similar to what our database will have
-//        addQuestions(new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you see?",
-//                "Refrigerator", new String[]{"Microwave", "Refrigerator", "Oven", "Toaster"}, R.drawable.refrigerator));
-//        addQuestions(new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you see?",
-//                "Apple", new String[]{"Banana", "Apple", "Orange", "Grapes"},R.drawable.apple));
-//        addQuestions(new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you see?",
-//                "Car", new String[]{"Bus", "Car", "Bicycle", "Truck"},R.drawable.car));
-//        addQuestions(new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you see?",
-//                "Toothbrush", new String[]{"Toothbrush", "Toothpaste", "Floss", "Mouthwash"},R.drawable.toothbrush));
-//        addQuestions(new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you see?",
-//                "Microwave", new String[]{"Microwave", "Refrigerator", "Oven", "Toaster"},R.drawable.microwave));
-//
-//        addQuestions(new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"Which word doesn't belong?",
-//                "Trunk", new String[]{"Ceiling", "Canopy", "Roof", "Trunk"},R.drawable.refrigerator));
-//        addQuestions(new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"Which word doesn't belong?",
-//                "Cat", new String[]{"Cat", "Cauliflower", "Cabbage", "Cucumber"},R.drawable.refrigerator));
-//        addQuestions(new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"Which word doesn't belong?",
-//                "Shoes", new String[]{"Tea", "Coffee", "Juice", "Shoes"},R.drawable.refrigerator));
-//        addQuestions(new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"Which word doesn't belong?",
-//                "Shoes", new String[]{"Cable", "Rope", "Basket", "Thread"},R.drawable.refrigerator));
-//        addQuestions(new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"Which word doesn't belong?",
-//                "Watch", new String[]{"Phone", "Laptop", "Computer", "Watch"},R.drawable.refrigerator));
-//
-//        addQuestions(new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you hear?",
-//                "Bread", new String[]{"Thread", "Red", "Bread", "Bed"},R.drawable.refrigerator));
-//        addQuestions(new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you hear?",
-//                "Tablet", new String[]{"Tablet", "Cabinet", "Table", "Tabletop"},R.drawable.refrigerator));
-//        addQuestions(new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you hear?",
-//                "Belt", new String[]{"Pelt", "Melt", "Bolt", "Belt"},R.drawable.refrigerator));
-//        addQuestions(new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you hear?",
-//                "Plate", new String[]{"Place", "Plain", "Late", "Plate"},R.drawable.refrigerator));
-//        addQuestions(new MultipleChoiceQuestion(MultipleChoiceQuestion.QuestionType.VISUAL,"What do you hear?",
-//                "Backpack", new String[]{"Knapsack", "Backpack", "Backtrack", "Packback"},R.drawable.refrigerator));
-//    }
 
 
     public MultipleChoiceQuestion getQuestion(int questionId){

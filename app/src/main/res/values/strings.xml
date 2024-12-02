@@ -53,6 +53,17 @@
     <string name="my_learning_option1">English Basics</string>
     <string name="my_learning_option2">Picture Learning</string>
     <string name="my_account_texy">My Account</string>
+    <string name="vocab_btn_txt">Vocabulary</string>
+    <string name="prepos_btn_txt">Prepositions</string>
+    <string name="adj_btn_txt">Adjectives</string>
+    <string name="nouns_btn_txt">Nouns</string>
+    <string name="verbs_btn_txt">Verbs</string>
+    <string name="choose_a_lesson_txt">Choose a lesson</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="play_audio_button_desc">Play Audio Button</string>
+    <string name="verb_lesson_header">Common English Verbs</string>
+    <string name="verbs_lesson_subtitle">Listen, Read and Repeat</string>
 
 
 </resources>

@@ -10,6 +10,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.Arrays;
 import java.util.List;
 
+import model.LessonModel;
 import model.MultipleChoiceQuestion;
 import repository.QuestionRepository;
 
@@ -19,17 +20,20 @@ public class FireBaseQuestionLoader {
     private static final String QUESTION_LOADER_PREFS = "QuestionLoaderPrefs";
     private static final String LAST_FETCH_KEY = "lastFetchTimestamp";
     private static final long FETCH_INTERVAL_MS = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
-
-    private Context context;
+    private final FirebaseFirestore db = FirebaseFirestore.getInstance("camlingo");
+    private final Context context;
 
     public FireBaseQuestionLoader(Context context){
         this.context = context;
         this.questionRepository = new QuestionRepository(context);
     }
 
+
     public void loadQuestions(){
         if(shouldFetchQuestions()){
             fetchQuestionsFromFirestore();
+            // Update the last fetch timestamp
+            updateLastFetchTimestamp();
         } else {
         Log.i("FireBaseQuestionLoader", "Questions fetch skipped. Using local data.");
         }
@@ -43,11 +47,11 @@ public class FireBaseQuestionLoader {
     }
 
     public void fetchQuestionsFromFirestore(){
-        FirebaseFirestore db = FirebaseFirestore.getInstance("camlingo");
+
         CollectionReference questionRef = db.collection("daily_quests");
 
         questionRef.orderBy("text")
-                .limit(10) // get only 5 questiosn
+                .limit(10) // get only 5 questions
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots){
@@ -72,8 +76,6 @@ public class FireBaseQuestionLoader {
                         Log.i("FireBaseQuestionLoader", "New question: " + question);
                     }
 
-                    // Update the last fetch timestamp
-                    updateLastFetchTimestamp();
                 })
                 .addOnFailureListener(e -> {
                     System.err.println("Error fetching daily challenge questions: " + e.getMessage());
