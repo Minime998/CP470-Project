@@ -1,11 +1,14 @@
 package com.example.camlingo;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -13,9 +16,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+
+import java.util.List;
 import java.util.Objects;
 
+import database.AppDatabaseHelper;
 import database.FireBaseQuestionLoader;
+import model.LessonModel;
+import model.MultipleChoiceQuestion;
 import utils.AppUser;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         // Find CardViews by ID
         CardView myLearningCard = findViewById(R.id.continue_learning_card);
@@ -54,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         FireBaseQuestionLoader qloader = new FireBaseQuestionLoader(this);
         qloader.loadQuestions();
 
+
         // Set up the toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -79,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
             //Intent intent = new Intent(MainActivity.this, MainActivity.class);
             //startActivity(intent);
             Toast.makeText(MainActivity.this, "leaderboardCard Clicked", Toast.LENGTH_SHORT).show();
-
         });
 
     }

@@ -10,7 +10,7 @@ public class AppDatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "camlingo.db";
     private static final int VERSION_NUM = 1;
 
-    // Table and column names
+    // Table for daily quests questions
     public static final String TABLE_QUESTIONS = "questions";
     public static final String COLUMN_ID = "id";
     public static final String COLUMN_TYPE = "type";
@@ -19,7 +19,13 @@ public class AppDatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_OPTIONS = "options";
     public static final String COLUMN_MEDIA = "media";
 
-    // Statement to create the table
+    // Table for verbs lesson
+    public static final String TABLE_VERBS = "verbs_lesson";
+    public static final String COLUMN_VERB = "verb";
+    public static final String COLUMN_PHRASE = "phrase";
+
+
+    // Statement to create the table for daily quests
     private static final String CREATE_TABLE_QUESTIONS =
             "CREATE TABLE " + TABLE_QUESTIONS + " (" +
                     COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -30,6 +36,14 @@ public class AppDatabaseHelper extends SQLiteOpenHelper {
                     COLUMN_MEDIA + " TEXT NOT NULL" +
                     ");";
 
+    private static final String CREATE_TABLE_VERBS =
+            "CREATE TABLE " + TABLE_VERBS + " (" +
+                    COLUMN_ID + " TEXT PRIMARY KEY, " +
+                    COLUMN_VERB + " TEXT NOT NULL, " +
+                    COLUMN_PHRASE + " TEXT NOT NULL, " +
+                    COLUMN_MEDIA + " TEXT NOT NULL" +
+                    ");";
+
     public AppDatabaseHelper(Context context){
         super(context, DATABASE_NAME, null, VERSION_NUM);
     }
@@ -37,12 +51,14 @@ public class AppDatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE_QUESTIONS);
-        Log.d("DatabaseHelper", "Database and questions table created.");
+        db.execSQL(CREATE_TABLE_VERBS);
+        Log.d("DatabaseHelper", "Database and tables created.");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_QUESTIONS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_VERBS);
         onCreate(db);
     }
 }

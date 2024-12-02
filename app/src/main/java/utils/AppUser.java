@@ -14,9 +14,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class AppUser {
-    private Context context;
-    private FirebaseAuth mAuth;
-    private final String emailRegex =  "^([^@]+)"; // Match everything before '@';
+    private final Context context;
+    private final FirebaseAuth mAuth;
 
     public AppUser(Context ctx){
         this.context = ctx;
@@ -37,6 +36,8 @@ public class AppUser {
                 ((MainActivity) context).finish();
             }
         } else {
+            // Match everything before '@';
+            String emailRegex = "^([^@]+)";
             Pattern pattern = Pattern.compile(emailRegex);
             Matcher matcher = pattern.matcher(user.getEmail());
 

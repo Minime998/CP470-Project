@@ -30,7 +30,6 @@ public class QuestionFragment extends Fragment {
     private Button checkBtn;
     private Button continueBtn;
     private Button finishBtn;
-    private Button playAudioButton;
     private ProgressBar progressBar;
     private RadioButton option1, option2, option3, option4;
     private RadioGroup optionsGroup;
@@ -69,7 +68,6 @@ public class QuestionFragment extends Fragment {
         checkBtn = view.findViewById(R.id.checkBtn);
         progressBar = view.findViewById(R.id.progressBar);
         continueBtn = view.findViewById(R.id.continueBtn);
-        playAudioButton = view.findViewById(R.id.playAudioButton);
         questionText = view.findViewById(R.id.img_question_text);
         scoreText = view.findViewById(R.id.scoreText);
         questionImage = view.findViewById(R.id.question_img);
