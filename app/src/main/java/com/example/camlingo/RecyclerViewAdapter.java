@@ -21,6 +21,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     Context context;
     ArrayList<LessonModel> lessonModels;
+    private boolean audioPlaying = false;
 
     public RecyclerViewAdapter(Context context, ArrayList<LessonModel> lessonModels){
         this.context = context;
@@ -43,11 +44,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.itemText.setText(lessonModels.get(position).getItemText());
         holder.itemPhrase.setText(lessonModels.get(position).getPhrase());
         holder.playAudioBtn.setOnClickListener(v -> {
-            playAudio(lessonModels.get(position).getMedia());
+            if (!audioPlaying){
+                audioPlaying = true;
+                playAudio(lessonModels.get(position).getMedia());
+            }
         });
-
-
-
     }
 
     private void playAudio(String mediaUrl) {
@@ -64,6 +65,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         mediaPlayer.setOnCompletionListener(mp ->{
             mp.release();
             Log.i("AudioPlayer", "Audio playback completed");
+            audioPlaying = false;
         });
     }
 
