@@ -22,4 +22,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "CamLingo"
 include(":app")
- 
+include(":opencv")
