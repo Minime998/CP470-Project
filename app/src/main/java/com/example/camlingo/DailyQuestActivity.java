@@ -43,7 +43,7 @@ public class DailyQuestActivity extends AppCompatActivity {
         TextView loginStreak = findViewById(R.id.login_streak);
 
         // check if user can claim login rewards
-//        claimButton.setEnabled(shouldClaimReward());
+        claimButton.setEnabled(shouldClaimReward());
 
         long streakCount = GlobalUserCache.getCurrentUser().getStreak();
         String streakText;
