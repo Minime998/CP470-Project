@@ -1,7 +1,10 @@
 package com.example.camlingo;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
@@ -136,6 +139,24 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();
+            return true;
+        }
+
+        if (id == R.id.about) {
+            // Handle about action
+            AlertDialog.Builder customDialogBuilder = new AlertDialog.Builder(this);
+            View customView = getLayoutInflater().inflate(R.layout.about_author_dialog, null);
+            customDialogBuilder.setView(customView);
+            customDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    // Dismiss the dialog
+                    dialog.dismiss();
+                }
+            });
+            AlertDialog aboutDialog = customDialogBuilder.create();
+            aboutDialog.show();
+
             return true;
         }
 
