@@ -20,6 +20,7 @@ public class GetLessonListFromFirestore {
     // Fetch lessons from Firestore
     public void getLessons(OnLessonsFetchedListener listener) {
         db.collection("lessons")
+                .orderBy("lesson_number")
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     ArrayList<LessonModel> lessons = new ArrayList<>();
@@ -31,10 +32,11 @@ public class GetLessonListFromFirestore {
                         String lessonName = document.getString("type");
                         String lessonCollectionName = document.getString("collection_name");
                         Long lessonNumber = document.getLong("lesson_number");
+                        String lessonMediaUrl = document.getString("mediaUrl");
 
                         // Only add valid lessons
-                        if (lessonName != null && lessonCollectionName != null && lessonNumber != null) {
-                            lessons.add(new LessonModel(lessonName, lessonCollectionName, lessonNumber));
+                        if (lessonName != null && lessonCollectionName != null && lessonNumber != null && lessonMediaUrl != null) {
+                            lessons.add(new LessonModel(lessonName, lessonCollectionName, lessonNumber,lessonMediaUrl));
                         }
                         else{
                             Log.i("GetLessonFromFirestore", "Failed to add lesson");

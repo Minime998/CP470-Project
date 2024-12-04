@@ -56,7 +56,6 @@ public class LessonsRecyclerViewActivity extends AppCompatActivity {
                     }
 
                     // Reverse the lessonModels ArrayList
-                    Collections.reverse(lessonModels);
                     adapter.notifyDataSetChanged();
                 }
             }
