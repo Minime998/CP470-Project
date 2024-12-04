@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/authors"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Authors:" />
+
+    <!-- TextView for Author 1 -->
+    <TextView
+        android:id="@+id/author1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Noah Fedosoff " />
+
+    <!-- TextView for Author 2 -->
+    <TextView
+        android:id="@+id/author2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sicheng Yu" />
+
+    <!-- TextView for Author 3 -->
+    <TextView
+        android:id="@+id/author3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hamza Tariq" />
+
+    <!-- TextView for Author 4 -->
+    <TextView
+        android:id="@+id/author4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Frank Obedi" />
+
+    <!-- TextView for Author 5 -->
+    <TextView
+        android:id="@+id/author5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Kiran Persaud" />
+
+</LinearLayout>
