@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 import model.LessonModel;
@@ -38,6 +40,15 @@ public class LessonsRecyclerViewAdapter extends RecyclerView.Adapter<LessonsRecy
         LessonModel lesson = lessonModels.get(position);
         holder.lessonName.setText(lessonModels.get(position).getLessonName());
         holder.lessonNum.setText(String.valueOf(lessonModels.get(position).getLessonNumber()));
+        switch (lesson.getLessonName().toLowerCase()){
+            case "verbs":
+                Glide.with(context).load("https://firebasestorage.googleapis.com/v0/b/camlingo-app.firebasestorage.app/o/learn_english%2Flesson_cover_images%2Fverbs_lesson_img.png?alt=media&token=b19be693-42cd-4048-9598-49ecffb390ba")
+                        .into(holder.lessonImage);
+            case "nouns":
+                Glide.with(context).load("https://firebasestorage.googleapis.com/v0/b/camlingo-app.firebasestorage.app/o/learn_english%2Flesson_cover_images%2Fnouns_lesson_img.png?alt=media&token=80f30b29-764b-4b94-82d8-8dadf2abbb79")
+                        .into(holder.lessonImage);
+        }
+
     }
 
     @Override
