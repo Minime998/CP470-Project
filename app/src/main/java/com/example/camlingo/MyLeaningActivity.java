@@ -17,7 +17,8 @@ import com.bumptech.glide.Glide;
 
 import java.util.Objects;
 
-import utils.AppUser;
+import model.GlobalUserCache;
+import utils.User;
 
 public class MyLeaningActivity extends AppCompatActivity {
 
@@ -45,8 +46,8 @@ public class MyLeaningActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 
         // load user info in tool bar
-        AppUser user = new AppUser(MyLeaningActivity.this);
-        user.getUserInfo(userNameTxtView,false);
+        User user = GlobalUserCache.getCurrentUser();
+        userNameTxtView.setText(user.getUserName());
 
 
         ImageView animated_camera = findViewById(R.id.camera_gif);
@@ -61,7 +62,7 @@ public class MyLeaningActivity extends AppCompatActivity {
 
         // Click on english basics card
         english_basics_card.setOnClickListener(v ->{
-            startActivity(new Intent(MyLeaningActivity.this, LessonsActivity.class));
+            startActivity(new Intent(MyLeaningActivity.this, LessonsRecyclerViewActivity.class));
         });
 
         // Click on picture learning

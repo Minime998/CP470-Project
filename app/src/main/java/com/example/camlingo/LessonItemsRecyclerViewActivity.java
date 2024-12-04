@@ -2,6 +2,7 @@ package com.example.camlingo;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,17 +17,17 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 
-import model.LessonModel;
+import model.LessonItemModel;
 
-public class LessonRecyclerViewActivity extends AppCompatActivity {
-    ArrayList<LessonModel> lessonModels = new ArrayList<>();
-    private RecyclerViewAdapter adapter;
+public class LessonItemsRecyclerViewActivity extends AppCompatActivity {
+    ArrayList<LessonItemModel> lessonItemModels = new ArrayList<>();
+    private LessonItemsRecyclerViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_lesson_recycler_view);
+        setContentView(R.layout.activity_lesson_item_recycler_view);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -41,10 +42,15 @@ public class LessonRecyclerViewActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.lessonRecycleView);
 
-        adapter = new RecyclerViewAdapter(this, lessonModels);
+        adapter = new LessonItemsRecyclerViewAdapter(this, lessonItemModels);
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        TextView lessonHeader = findViewById(R.id.lesson_header);
+        String lessonHeaderText = "Common English " + lessonType;
+        lessonHeaderText = lessonHeaderText.toUpperCase();
+        lessonHeader.setText(lessonHeaderText);
     }
 
     private void fetchLessonData( String lessonType){
@@ -67,8 +73,8 @@ public class LessonRecyclerViewActivity extends AppCompatActivity {
                         String phrase = document.getString("phrase");
                         String media = document.getString("mediaUrl");
                         String itemId = document.getId();
-                        LessonModel lessonModelItem = new LessonModel(itemText,phrase,media,itemId);
-                        lessonModels.add(lessonModelItem);
+                        LessonItemModel lessonItemModelItem = new LessonItemModel(itemText,phrase,media,itemId);
+                        lessonItemModels.add(lessonItemModelItem);
                         Log.i("RecyclerView", "verb found: " + itemText);
                     }
                     adapter.notifyDataSetChanged();

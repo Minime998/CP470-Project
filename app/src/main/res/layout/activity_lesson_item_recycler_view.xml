@@ -7,9 +7,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_marginHorizontal="15dp"
-    tools:context=".LessonRecyclerViewActivity">
+    tools:context=".LessonItemsRecyclerViewActivity">
+
+
 
     <TextView
+        android:id="@+id/lesson_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/verb_lesson_header"

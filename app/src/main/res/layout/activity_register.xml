@@ -33,6 +33,23 @@
         android:drawableLeft="@drawable/baseline_person_24"
         android:drawablePadding="8dp"
         android:fontFamily="@font/rodin"
+        android:hint="@string/prompt_name"
+        android:padding="8dp"
+        android:textColor="@color/blue_dark"
+        android:textColorHighlight="@color/cardview_dark_background" />
+
+    <EditText
+        android:id="@+id/username_email"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/custom_edit_text"
+        android:backgroundTint="@color/grey_light"
+        android:drawableLeft="@drawable/baseline_email_24"
+        android:drawablePadding="8dp"
+        android:fontFamily="@font/rodin"
         android:hint="@string/prompt_email"
         android:padding="8dp"
         android:textColor="@color/blue_dark"

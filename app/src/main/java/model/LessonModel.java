@@ -1,33 +1,34 @@
 package model;
 
 public class LessonModel {
-    private String media;
-    private String itemText;
-    private String phrase;
-    private String itemId;
+    private final String lessonName;
+    private final String lessonCollectionName;
+    private final long lessonNumber;
 
-
-    public LessonModel(String itemText, String phrase, String media, String itemId) {
-        this.media = media;
-        this.itemText = itemText;
-        this.phrase = phrase;
-        this.itemId = itemId;
+    public LessonModel(String lessonName, String lessonCollectionName, long lessonNumber){
+        this.lessonName = lessonName;
+        this.lessonCollectionName = lessonCollectionName;
+        this.lessonNumber = lessonNumber;
     }
 
-
-    public String getMedia() {
-        return media;
+    public String getLessonName() {
+        return lessonName;
     }
 
-    public String getItemText() {
-        return itemText;
+    public long getLessonNumber() {
+        return lessonNumber;
     }
 
-    public String getPhrase() {
-        return phrase;
+    public String getLessonCollectionName() {
+        return lessonCollectionName;
     }
 
-    public String getItemId() {
-        return itemId;
+    @Override
+    public String toString() {
+        return "Lesson{" +
+                "lessonName='" + lessonName + '\'' +
+                ", lessonCollectionName='" + lessonCollectionName + '\'' +
+                '}';
     }
 }
+

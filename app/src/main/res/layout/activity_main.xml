@@ -8,6 +8,32 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:id="@+id/screen_loader"
+        android:gravity="center">
+
+        <!-- Placeholder for user data -->
+        <TextView
+            android:id="@+id/userNameTxtView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Loading..."
+            android:textSize="18sp"
+            android:textColor="@color/black" />
+
+        <!-- Progress Bar -->
+        <ProgressBar
+            android:id="@+id/loadingSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
+
     <!-- Include toolbar -->
     <include
         layout="@layout/toolbar_layout" />

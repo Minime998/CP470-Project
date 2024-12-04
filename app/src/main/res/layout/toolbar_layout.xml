@@ -13,6 +13,8 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/CustomPopupMenu"
         app:contentInsetStart="10dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="7dp"
         app:contentInsetEnd="0dp">
 
         <ImageView
