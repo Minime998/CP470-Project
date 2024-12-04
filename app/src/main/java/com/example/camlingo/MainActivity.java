@@ -2,8 +2,6 @@ package com.example.camlingo;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
@@ -16,22 +14,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 
-import java.util.List;
 import java.util.Objects;
 
-import database.AppDatabaseHelper;
 import database.FireBaseQuestionLoader;
-import model.LessonModel;
-import model.MultipleChoiceQuestion;
-import utils.AppUser;
+import model.GlobalUserCache;
+import utils.User;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,10 +40,31 @@ public class MainActivity extends AppCompatActivity {
         CardView dailyQuestsCard = findViewById(R.id.daily_quests_card);
         CardView leaderboardCard = findViewById(R.id.leaderboard_card);
         TextView userNameTxtView = findViewById(R.id.userName);
+        LinearLayout screen_loader = findViewById(R.id.screen_loader);
 
-        // load user info in tool bar
-        AppUser user = new AppUser(MainActivity.this);
-        user.getUserInfo(userNameTxtView,true); // true shows "welcome back snackbar"
+        // Show the loading spinner
+        screen_loader.setVisibility(View.VISIBLE);
+
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        // cache user info
+        fetchUserData(userId, user -> {
+            // Hide the spinner
+            screen_loader.setVisibility(View.GONE);
+
+            if (user != null) {
+                // Update UI with user data
+                userNameTxtView.setText(user.getUserName());
+                Log.i("MainActivity", "username: " + user.getUserName());
+            } else {
+                // Handle null user
+                userNameTxtView.setText("Error loading user");
+                Log.e("MainActivity", "User data not loaded");
+            }
+        });
+
+
+
 
         ImageView animated_camera = findViewById(R.id.camera_gif);
         Glide.with(this)
@@ -146,6 +161,65 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    // callback to nofify when user data is successfully fetched
+    public interface OnUserDataLoadedListener {
+        void onUserDataLoaded(User user);
+    }
+
+    public void fetchUserData(String userId, OnUserDataLoadedListener listener) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance("camlingo");
+
+        db.collection("users").document(userId)
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        // Map Firestore document to User object
+                        User user = documentSnapshot.toObject(User.class);
+
+                        // Cache the user globally
+                        GlobalUserCache.setCurrentUser(user);
+                        Log.i("MainActivity", "User object: " + user.toString());
+
+                        // Get the last login timestamp from Firestore
+                        Long lastLoginTimestamp = documentSnapshot.getLong("lastLogin");
+
+                        Log.i("Updating streak time. last login was: ", String.valueOf(lastLoginTimestamp));
+
+                        if (lastLoginTimestamp != null) {
+                            // Calculate the time difference in days
+                            long currentTimestamp = System.currentTimeMillis();
+                            long diffInMillis = currentTimestamp - lastLoginTimestamp;
+                            long diffInDays = diffInMillis / (1000 * 60 * 60 * 24);; // Convert millis to days
+
+                            Log.i("Updating streak time", String.valueOf(diffInMillis));
+
+                            // Check if the user logged in on consecutive days
+                            if (diffInDays == 1) {
+                                // Increment streak if login was on consecutive days
+                                long streak = documentSnapshot.getLong("streak");
+                                Log.i("Updating streak here", String.valueOf(streak));
+                                streak++;
+                                db.collection("users").document(userId).update("streak", streak);
+                            } else if (diffInDays > 1) {
+                                // Reset streak if the user missed more than one day
+                                db.collection("users").document(userId).update("streak", 1);
+                            }
+
+                            // Update the last login time (adjusting for testing with 2-minute difference)
+                            db.collection("users").document(userId).update("lastLogin", currentTimestamp - 120000);
+                        }
+
+                        // Notify the listener
+                        if (listener != null) {
+                            listener.onUserDataLoaded(user);
+                        }
+                    } else {
+                        Log.w("Firestore", "User document does not exist");
+                    }
+                })
+                .addOnFailureListener(e -> Log.e("Firestore", "Error fetching user data", e));
     }
 
 }

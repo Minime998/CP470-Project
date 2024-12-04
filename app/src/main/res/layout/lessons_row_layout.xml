@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:cardCornerRadius="10dp"
+        android:layout_marginVertical="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/lesson_card_view_background2"
+            android:padding="15dp">
+
+
+            <TextView
+                android:id="@+id/lesson_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lesson 1"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/lesson_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:text="Verbs"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lesson_num" />
+
+            <ImageView
+                android:id="@+id/lesson_icon"
+                android:layout_width="220dp"
+                android:layout_height="146dp"
+                android:src="@android:mipmap/sym_def_app_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Progress"
+                app:layout_constraintBottom_toTopOf="@+id/continue_learning_btn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lesson_icon" />
+
+            <TextView
+                android:id="@+id/lesson_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="50%"
+                app:layout_constraintBottom_toTopOf="@+id/continue_learning_btn"
+                app:layout_constraintStart_toEndOf="@+id/progressBar2"
+                app:layout_constraintTop_toBottomOf="@+id/lesson_icon"
+                app:layout_constraintVertical_bias="0.485" />
+
+            <ProgressBar
+                android:id="@+id/progressBar2"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                app:layout_constraintBottom_toTopOf="@+id/continue_learning_btn"
+                app:layout_constraintStart_toEndOf="@+id/textView6"
+                app:layout_constraintTop_toBottomOf="@+id/lesson_icon"
+                app:layout_constraintVertical_bias="0.526" />
+
+            <Button
+                android:id="@+id/continue_learning_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Continue Learning"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="55dp"
+                app:layout_constraintTop_toBottomOf="@+id/lesson_icon" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

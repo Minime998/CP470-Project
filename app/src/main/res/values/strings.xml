@@ -64,6 +64,7 @@
     <string name="play_audio_button_desc">Play Audio Button</string>
     <string name="verb_lesson_header">Common English Verbs</string>
     <string name="verbs_lesson_subtitle">Listen, Read and Repeat</string>
+    <string name="prompt_name">Name</string>
 
 
 </resources>

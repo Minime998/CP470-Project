@@ -11,6 +11,10 @@ public class FormValidator {
         return (!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches());
     }
 
+    private static boolean isValidUsername(String username){
+        return (!TextUtils.isEmpty(username) && username.length() >= 3);
+    }
+
     private static boolean isValidPassword(String password){
         // validate password by checking that it's not empty string
         return (!TextUtils.isEmpty(password) && password.length() >= 6);
@@ -23,4 +27,6 @@ public class FormValidator {
     public boolean checkUEmail(String email){
         return isValidEmail(email);
     }
+
+    public boolean checkUsername(String username){return  isValidUsername(username);}
 }
