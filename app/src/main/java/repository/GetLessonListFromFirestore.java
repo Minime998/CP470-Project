@@ -33,10 +33,11 @@ public class GetLessonListFromFirestore {
                         String lessonCollectionName = document.getString("collection_name");
                         Long lessonNumber = document.getLong("lesson_number");
                         String lessonMediaUrl = document.getString("mediaUrl");
+                        String lessonDocumentName = document.getString("document_name");
 
                         // Only add valid lessons
-                        if (lessonName != null && lessonCollectionName != null && lessonNumber != null && lessonMediaUrl != null) {
-                            lessons.add(new LessonModel(lessonName, lessonCollectionName, lessonNumber,lessonMediaUrl));
+                        if (lessonName != null && lessonCollectionName != null && lessonNumber != null && lessonMediaUrl != null && lessonDocumentName != null) {
+                            lessons.add(new LessonModel(lessonName, lessonCollectionName, lessonNumber,lessonMediaUrl,lessonDocumentName));
                         }
                         else{
                             Log.i("GetLessonFromFirestore", "Failed to add lesson");

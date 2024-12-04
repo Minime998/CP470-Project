@@ -5,12 +5,22 @@ public class LessonModel {
     private final String lessonCollectionName;
     private final long lessonNumber;
     private String lessonMediaUrl;
+    private String lessonDocumentName;
 
-    public LessonModel(String lessonName, String lessonCollectionName, long lessonNumber, String lessonMediaUrl){
+    public LessonModel(String lessonName, String lessonCollectionName, long lessonNumber, String lessonMediaUrl, String lessonDocumentName){
         this.lessonName = lessonName;
         this.lessonCollectionName = lessonCollectionName;
         this.lessonNumber = lessonNumber;
         this.lessonMediaUrl = lessonMediaUrl;
+        this.lessonDocumentName = lessonDocumentName;
+    }
+
+    public String getLessonDocumentName() {
+        return lessonDocumentName;
+    }
+
+    public void setLessonDocumentName(String lessonDocumentName) {
+        this.lessonDocumentName = lessonDocumentName;
     }
 
     public String getLessonMediaUrl() {
@@ -40,6 +50,9 @@ public class LessonModel {
         return "Lesson{" +
                 "lessonName='" + lessonName + '\'' +
                 ", lessonCollectionName='" + lessonCollectionName + '\'' +
+                ", lessonNumber='" + lessonNumber + '\'' +
+                ", lessonMediaUrl='" + lessonMediaUrl + '\'' +
+                ", lessonDocumentName='" + lessonDocumentName + '\'' +
                 '}';
     }
 }

@@ -54,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Progress"
-                app:layout_constraintBottom_toTopOf="@+id/button"
+                app:layout_constraintBottom_toTopOf="@+id/continue_learning_btn"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lesson_icon" />
 
@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:text="50%"
-                app:layout_constraintBottom_toTopOf="@+id/button"
+                app:layout_constraintBottom_toTopOf="@+id/continue_learning_btn"
                 app:layout_constraintStart_toEndOf="@+id/progressBar2"
                 app:layout_constraintTop_toBottomOf="@+id/lesson_icon"
                 app:layout_constraintVertical_bias="0.485" />
@@ -75,13 +75,13 @@
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                app:layout_constraintBottom_toTopOf="@+id/button"
+                app:layout_constraintBottom_toTopOf="@+id/continue_learning_btn"
                 app:layout_constraintStart_toEndOf="@+id/textView6"
                 app:layout_constraintTop_toBottomOf="@+id/lesson_icon"
                 app:layout_constraintVertical_bias="0.526" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/continue_learning_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Continue Learning"

@@ -51,9 +51,8 @@ public class LessonsRecyclerViewActivity extends AppCompatActivity {
                     Log.i("LessonList", "No lessons found!");
                 } else {
                     for (LessonModel lesson : lessons) {
-                        Log.i("LessonList", "Lesson: " + lesson.getLessonName() + ", Collection: " + lesson.getLessonCollectionName() + " Lesson # " + lesson.getLessonNumber());
-                        lessonModels.add(lesson);
-                    }
+                        Log.i("LessonList", "Lesson: " + lesson.toString());
+                        lessonModels.add(lesson);                    }
 
                     // Reverse the lessonModels ArrayList
                     adapter.notifyDataSetChanged();

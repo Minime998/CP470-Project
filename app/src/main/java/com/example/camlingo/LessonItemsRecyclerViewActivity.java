@@ -34,38 +34,41 @@ public class LessonItemsRecyclerViewActivity extends AppCompatActivity {
             return insets;
         });
 
-        String lessonType = getIntent().getStringExtra("lessonType");
-        if (lessonType != null){
-            fetchLessonData(lessonType);
-            Log.i("RecyclerView", "lessonType: " + lessonType);
+        String lessonDocumentName = getIntent().getStringExtra("documentName");
+        String lessonCollection = getIntent().getStringExtra("lessonCollection");
+        String lessonName = getIntent().getStringExtra("lessonName") + ":";
+        lessonName = lessonName.substring(0, 1).toUpperCase() + lessonName.substring(1).toLowerCase();
+        if (lessonDocumentName != null && lessonCollection != null && lessonName != null){
+            fetchLessonData(lessonDocumentName, lessonCollection);
+            Log.i("RecyclerView", "lessonName: " + lessonName);
         }
 
         RecyclerView recyclerView = findViewById(R.id.lessonRecycleView);
 
-        adapter = new LessonItemsRecyclerViewAdapter(this, lessonItemModels);
+        adapter = new LessonItemsRecyclerViewAdapter(this, lessonItemModels, lessonName);
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         TextView lessonHeader = findViewById(R.id.lesson_header);
-        String lessonHeaderText = "Common English " + lessonType;
+        String lessonHeaderText = "Common English " + lessonCollection;
         lessonHeaderText = lessonHeaderText.toUpperCase();
         lessonHeader.setText(lessonHeaderText);
     }
 
-    private void fetchLessonData( String lessonType){
+    private void fetchLessonData( String lessonDocumentName, String lessonCollection){
         FirebaseFirestore db = FirebaseFirestore.getInstance("camlingo");
-        lessonType.toLowerCase();
+        lessonDocumentName = lessonDocumentName.toLowerCase();
+        lessonCollection = lessonCollection.toLowerCase();
 
         // Dynamically construct Firestore path
-        String subCollection = "english_" + lessonType;
-        String documentName = "learn_"+ lessonType;
 
-        Log.i("RecyclerView", "doc:" + documentName + ",subsect: " + subCollection);
+        Log.i("RecyclerView", "doc:" + lessonDocumentName + ",subsect: " + lessonCollection);
 
         db.collection("lessons")
-                .document(documentName)
-                .collection(subCollection)
+                .document(lessonDocumentName)
+                .collection(lessonCollection)
+                .limit(10)
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots){

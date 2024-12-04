@@ -1,10 +1,12 @@
 package com.example.camlingo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -43,6 +45,18 @@ public class LessonsRecyclerViewAdapter extends RecyclerView.Adapter<LessonsRecy
         holder.lessonNum.setText(lessonNumText);
         Glide.with(context).load(lessonModels.get(position).getLessonMediaUrl())
                 .into(holder.lessonImage);
+        holder.continueLearningBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(context, LessonItemsRecyclerViewActivity.class);
+            intent.putExtra("lessonCollection",lesson.getLessonCollectionName());
+            intent.putExtra("documentName", lesson.getLessonDocumentName());
+            if (lesson.getLessonName().equalsIgnoreCase("vocabulary")){
+                intent.putExtra("lessonName", lesson.getLessonName());
+            }
+            else{
+                intent.putExtra("lessonName", lesson.getLessonName().substring(0, lesson.getLessonName().length() - 1));
+            }
+            context.startActivity(intent);
+        });
 
     }
 
@@ -56,7 +70,7 @@ public class LessonsRecyclerViewAdapter extends RecyclerView.Adapter<LessonsRecy
         TextView lessonName;
         TextView lessonProgress;
         ImageView lessonImage;
-        androidx.cardview.widget.CardView cardView;
+        Button continueLearningBtn;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -64,7 +78,7 @@ public class LessonsRecyclerViewAdapter extends RecyclerView.Adapter<LessonsRecy
             lessonName = itemView.findViewById(R.id.lesson_type);
             lessonProgress = itemView.findViewById(R.id.lesson_progress);
             lessonImage = itemView.findViewById(R.id.lesson_icon);
-            cardView = itemView.findViewById(R.id.card_view);
+            continueLearningBtn = itemView.findViewById(R.id.continue_learning_btn);
         }
     }
 }

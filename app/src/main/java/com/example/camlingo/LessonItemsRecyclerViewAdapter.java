@@ -1,6 +1,7 @@
 package com.example.camlingo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,10 +23,12 @@ public class LessonItemsRecyclerViewAdapter extends RecyclerView.Adapter<LessonI
     Context context;
     ArrayList<LessonItemModel> lessonItemModels;
     private boolean audioPlaying = false;
+    private String lessonName;
 
-    public LessonItemsRecyclerViewAdapter(Context context, ArrayList<LessonItemModel> lessonItemModels){
+    public LessonItemsRecyclerViewAdapter(Context context, ArrayList<LessonItemModel> lessonItemModels, String lessonName){
         this.context = context;
         this.lessonItemModels = lessonItemModels;
+        this.lessonName = lessonName;
     }
 
     @NonNull
@@ -49,6 +52,7 @@ public class LessonItemsRecyclerViewAdapter extends RecyclerView.Adapter<LessonI
                 playAudio(lessonItemModels.get(position).getMedia());
             }
         });
+        holder.itemTextLabel.setText(lessonName);
     }
 
     private void playAudio(String mediaUrl) {
