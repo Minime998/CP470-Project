@@ -8,14 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
-
 import java.util.ArrayList;
+import model.GlobalUserCache;
 
 import model.LessonModel;
 
@@ -50,10 +50,14 @@ public class LessonsRecyclerViewAdapter extends RecyclerView.Adapter<LessonsRecy
             intent.putExtra("lessonCollection",lesson.getLessonCollectionName());
             intent.putExtra("documentName", lesson.getLessonDocumentName());
             intent.putExtra("lessonName", lesson.getLessonName());
-
-
+            intent.putExtra("lessCollection",lesson.getLessonCollectionName());
             context.startActivity(intent);
         });
+
+        Integer currentProgress = GlobalUserCache.getCurrentUser().getProgress().getOrDefault(lesson.getLessonName(),0);
+        String progressPercent = currentProgress + " %";
+        holder.lessonProgressText.setText(progressPercent);
+        holder.lessonProgressBar.setProgress(currentProgress.intValue());
 
     }
 
@@ -65,17 +69,19 @@ public class LessonsRecyclerViewAdapter extends RecyclerView.Adapter<LessonsRecy
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView lessonNum;
         TextView lessonName;
-        TextView lessonProgress;
+        TextView lessonProgressText;
         ImageView lessonImage;
         Button continueLearningBtn;
+        ProgressBar lessonProgressBar;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             lessonNum = itemView.findViewById(R.id.lesson_num);
             lessonName = itemView.findViewById(R.id.lesson_type);
-            lessonProgress = itemView.findViewById(R.id.lesson_progress);
+            lessonProgressText = itemView.findViewById(R.id.lesson_progress);
             lessonImage = itemView.findViewById(R.id.lesson_icon);
             continueLearningBtn = itemView.findViewById(R.id.continue_learning_btn);
+            lessonProgressBar = itemView.findViewById(R.id.lesson_progress_bar);
         }
     }
 }

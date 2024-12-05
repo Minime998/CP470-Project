@@ -38,9 +38,9 @@ public class LessonItemsRecyclerViewActivity extends AppCompatActivity {
         String lessonCollection = getIntent().getStringExtra("lessonCollection");
         String lessonName = getIntent().getStringExtra("lessonName");
         String lessonNameModified = lessonName;
+        String lessCollection = getIntent().getStringExtra("lessonCollection");
         assert lessonName != null;
         if(!lessonName.equalsIgnoreCase("vocabulary")){
-            assert lessonDocumentName != null;
             lessonNameModified = lessonNameModified.substring(0, lessonNameModified.length() - 1) + ":";
         }
         lessonNameModified = lessonNameModified.substring(0, 1).toUpperCase() + lessonNameModified.substring(1).toLowerCase();
@@ -51,7 +51,7 @@ public class LessonItemsRecyclerViewActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.lessonRecycleView);
 
-        adapter = new LessonItemsRecyclerViewAdapter(this, lessonItemModels, lessonNameModified, lessonName);
+        adapter = new LessonItemsRecyclerViewAdapter(this, lessonItemModels, lessonNameModified, lessonName,lessCollection, lessonDocumentName);
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -82,7 +82,8 @@ public class LessonItemsRecyclerViewActivity extends AppCompatActivity {
                         String phrase = document.getString("phrase");
                         String media = document.getString("mediaUrl");
                         String itemId = document.getId();
-                        LessonItemModel lessonItemModelItem = new LessonItemModel(itemText,phrase,media,itemId);
+                        boolean complete = document.getBoolean("complete");
+                        LessonItemModel lessonItemModelItem = new LessonItemModel(itemText,phrase,media,itemId,complete);
                         lessonItemModels.add(lessonItemModelItem);
                         Log.i("RecyclerView", "verb found: " + itemText);
                     }

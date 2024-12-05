@@ -23,7 +23,6 @@ public class LessonsRecyclerViewActivity extends AppCompatActivity {
     ArrayList<LessonModel> lessonModels = new ArrayList<>();
     private LessonsRecyclerViewAdapter adapter;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
