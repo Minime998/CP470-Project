@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         CardView leaderboardCard = findViewById(R.id.leaderboard_card);
         TextView userNameTxtView = findViewById(R.id.userName);
         LinearLayout screen_loader = findViewById(R.id.screen_loader);
+        TextView points = findViewById(R.id.points);
 
         // Show the loading spinner
         screen_loader.setVisibility(View.VISIBLE);
@@ -55,10 +56,11 @@ public class MainActivity extends AppCompatActivity {
             if (user != null) {
                 // Update UI with user data
                 userNameTxtView.setText(user.getUserName());
+                points.setText(String.valueOf(user.getPoints()));
                 Log.i("MainActivity", "username: " + user.getUserName());
             } else {
                 // Handle null user
-                userNameTxtView.setText("Error loading user");
+                userNameTxtView.setText(R.string.error_loading_user);
                 Log.e("MainActivity", "User data not loaded");
             }
         });
@@ -93,10 +95,7 @@ public class MainActivity extends AppCompatActivity {
         // Clear default title
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 
-        dailyQuestsCard.setOnClickListener(v -> {
-            //Toast.makeText(MainActivity.this, "DailyQuest Clicked", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(MainActivity.this, DailyQuestActivity.class));
-        });
+        dailyQuestsCard.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, DailyQuestActivity.class)));
 
         // My Learning button click
         myLearningCard.setOnClickListener(v -> {
@@ -106,12 +105,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Leader board card button click
-        leaderboardCard.setOnClickListener(v -> {
-            //no activity to open yet, just a placeholder here
-            //Intent intent = new Intent(MainActivity.this, MainActivity.class);
-            //startActivity(intent);
-            Toast.makeText(MainActivity.this, "leaderboardCard Clicked", Toast.LENGTH_SHORT).show();
-        });
+        leaderboardCard.setOnClickListener(v -> Toast.makeText(MainActivity.this, "leaderboardCard Clicked", Toast.LENGTH_SHORT).show());
 
     }
 
@@ -126,11 +120,6 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here.
         int id = item.getItemId();
-
-        if (id == R.id.settings) {
-            // Handle setting action
-            return true;
-        }
 
         // logout the user when they click logout
         if (id == R.id.logout) {
@@ -147,12 +136,9 @@ public class MainActivity extends AppCompatActivity {
             AlertDialog.Builder customDialogBuilder = new AlertDialog.Builder(this);
             View customView = getLayoutInflater().inflate(R.layout.about_author_dialog, null);
             customDialogBuilder.setView(customView);
-            customDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    // Dismiss the dialog
-                    dialog.dismiss();
-                }
+            customDialogBuilder.setPositiveButton("OK", (dialog, which) -> {
+                // Dismiss the dialog
+                dialog.dismiss();
             });
             AlertDialog aboutDialog = customDialogBuilder.create();
             aboutDialog.show();
@@ -191,14 +177,14 @@ public class MainActivity extends AppCompatActivity {
                             // Calculate the time difference in days
                             long currentTimestamp = System.currentTimeMillis();
                             long diffInMillis = currentTimestamp - lastLoginTimestamp;
-                            long diffInDays = diffInMillis / (1000 * 60 * 60 * 24);; // Convert millis to days
+                            long diffInDays = diffInMillis / (1000 * 60 * 60 * 24); // Convert millis to days
 
                             Log.i("Updating streak time", String.valueOf(diffInMillis));
 
                             // Check if the user logged in on consecutive days
                             if (diffInDays == 1) {
                                 // Increment streak if login was on consecutive days
-                                long streak = documentSnapshot.getLong("streak");
+                                Long streak = documentSnapshot.getLong("streak");
                                 Log.i("Updating streak here", String.valueOf(streak));
                                 streak++;
                                 db.collection("users").document(userId).update("streak", streak);

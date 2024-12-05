@@ -3,22 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/about"
-        android:title="About Author"
-        app:showAsAction="never"
-        android:visible="true" />
-
-    <item
-        android:title="Settings"
-        android:id="@+id/settings"
-        app:showAsAction="never"
-        android:visible="true"/>
-
-    <item
         android:id="@+id/logout"
-        android:title="Logout"
+        android:title="@string/logout"
         app:showAsAction="never"
         android:visible="true" />
 
+    <item
+        android:id="@+id/about"
+        android:title="@string/about"
+        app:showAsAction="never"
+        android:visible="true" />
 
 </menu>

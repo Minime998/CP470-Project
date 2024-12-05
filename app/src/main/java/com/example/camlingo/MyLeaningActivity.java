@@ -37,10 +37,13 @@ public class MyLeaningActivity extends AppCompatActivity {
         TextView userNameTxtView = findViewById(R.id.userName);
         CardView english_basics_card = findViewById(R.id.english_basics_card);
         CardView picture_learning_card = findViewById(R.id.picture_learning_card);
+        TextView points = findViewById(R.id.points);
 
         // Set up the toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        points.setText(String.valueOf(GlobalUserCache.getCurrentUser().getPoints()));
 
         // Clear default title
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
@@ -61,14 +64,10 @@ public class MyLeaningActivity extends AppCompatActivity {
                 .into(animated_bag);
 
         // Click on english basics card
-        english_basics_card.setOnClickListener(v ->{
-            startActivity(new Intent(MyLeaningActivity.this, LessonsRecyclerViewActivity.class));
-        });
+        english_basics_card.setOnClickListener(v -> startActivity(new Intent(MyLeaningActivity.this, LessonsRecyclerViewActivity.class)));
 
         // Click on picture learning
-        picture_learning_card.setOnClickListener(v -> {
-            startActivity(new Intent(MyLeaningActivity.this, image_upload.class));
-        });
+        picture_learning_card.setOnClickListener(v -> startActivity(new Intent(MyLeaningActivity.this, image_upload.class)));
     }
 
 

@@ -12,17 +12,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-
-import model.LessonItemModel;
 import model.LessonModel;
 import repository.GetLessonListFromFirestore;
 
 public class LessonsRecyclerViewActivity extends AppCompatActivity {
     ArrayList<LessonModel> lessonModels = new ArrayList<>();
     private LessonsRecyclerViewAdapter adapter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +37,10 @@ public class LessonsRecyclerViewActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+//        refreshUI();
+    }
 
+    private void refreshUI(){
         GetLessonListFromFirestore repository = new GetLessonListFromFirestore();
         repository.getLessons(new GetLessonListFromFirestore.OnLessonsFetchedListener() {
             @Override
@@ -64,8 +62,12 @@ public class LessonsRecyclerViewActivity extends AppCompatActivity {
                 Log.e("LessonList", "Error fetching lessons", e);
             }
         });
-
     }
 
+    @Override
+    protected void onResume(){
+        super.onResume();
+        refreshUI();
+    }
 
 }

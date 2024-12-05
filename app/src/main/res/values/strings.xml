@@ -27,7 +27,7 @@
     <string name="start_quest">Start</string>
     <string name="check_answer">Check</string>
     <string name="got_it">Got it</string>
-    <string name="upload_text">Upload image of...</string>
+    <string name="upload_text">Upload image of…</string>
     <string name="audio_button_desc">Press button to play sound</string>
     <string name="image_desc">Identify the object shown in the image</string>
     <string name="camera_btn_desc">Open camera</string>
@@ -46,7 +46,7 @@
     <string name="learning">My Learning</string>
     <string name="quest">Daily Quests</string>
     <string name="leaderboard">Leaderboard</string>
-    <string name="john">Welcome,\nJohn Lingo</string>
+    <string name="john">John Lingo</string>
     <string name="register">Register</string>
 
     <!--  My Learning Activity  -->
@@ -65,6 +65,11 @@
     <string name="verb_lesson_header">Common English Verbs</string>
     <string name="verbs_lesson_subtitle">Listen, Read and Repeat</string>
     <string name="prompt_name">Name</string>
+    <string name="error_loading_user">Error loading user</string>
+    <string name="lesson_cover_image">lesson cover image</string>
+    <string name="hi">Hi</string>
+    <string name="logout">Logout</string>
+    <string name="about">About</string>
 
 
 </resources>
