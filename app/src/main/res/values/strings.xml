@@ -65,6 +65,7 @@
     <string name="verb_lesson_header">Common English Verbs</string>
     <string name="verbs_lesson_subtitle">Listen, Read and Repeat</string>
     <string name="prompt_name">Name</string>
+    <string name="error_loading_user">Error loading user</string>
 
 
 </resources>
