@@ -10,17 +10,17 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 import model.GlobalUserCache;
 import model.LessonItemModel;
-
 public class LessonItemsRecyclerViewAdapter extends RecyclerView.Adapter<LessonItemsRecyclerViewAdapter.MyViewHolder> {
 
     Context context;
@@ -76,14 +76,15 @@ public class LessonItemsRecyclerViewAdapter extends RecyclerView.Adapter<LessonI
             // Update local model
             lessonItemModel.setComplete(isChecked);
 
-            // Log progress
-            Integer currentProgress = GlobalUserCache.getCurrentUser()
-                    .getProgress()
-                    .getOrDefault(lessonName, 0);
-            Log.i(TAG, "Lesson: " + lessonName + ", progress: " + currentProgress);
+            int totalItems = lessonItemModels.size();
+            int completedItems = (int) lessonItemModels.stream().filter(LessonItemModel::isComplete).count();
+            int progress = (int) ((completedItems / (double) totalItems) * 100);
+            Log.i(TAG, "Total: " + totalItems + ",   completedItems: " + completedItems + "   Progress: " + progress);
 
-
-            Log.i(TAG, "Checkbox was clicked.");
+            // Update the progress in the User object
+            Map<String, Integer> updatedProgress = new HashMap<>(GlobalUserCache.getCurrentUser().getProgress());
+            updatedProgress.put(lessonName, progress); // Update progress for the specific lesson
+            GlobalUserCache.getCurrentUser().setProgress(updatedProgress);
 
             // Update in Firestore
             FirebaseFirestore db = FirebaseFirestore.getInstance("camlingo");
@@ -98,6 +99,10 @@ public class LessonItemsRecyclerViewAdapter extends RecyclerView.Adapter<LessonI
                     .addOnFailureListener(e -> {
                         Log.e(TAG, "Error updating lesson item in Firestore.", e);
                     });
+
+            Log.i(TAG, "Lesson Progress is now: " + progress);
+            // Update Firestore
+            updateProgressInFirestore(lessonName, progress);
         });
     }
 
@@ -143,5 +148,17 @@ public class LessonItemsRecyclerViewAdapter extends RecyclerView.Adapter<LessonI
             checkBox = itemView.findViewById(R.id.lesson_item_check_box);
 
         }
+    }
+
+    public void updateProgressInFirestore(String lessonName, int progress){
+        FirebaseFirestore db = FirebaseFirestore.getInstance("camlingo");
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        String userId = mAuth.getCurrentUser().getUid();
+
+        db.collection("users")
+                .document(userId)
+                .update("progress." + lessonName, progress)
+                .addOnSuccessListener(aVoid -> Log.i(TAG, "Progress updated successfully for " + lessonName))
+                .addOnFailureListener(e -> Log.e(TAG, "Error updating progress: " + e.getMessage()));
     }
 }

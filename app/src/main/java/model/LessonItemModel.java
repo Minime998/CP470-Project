@@ -31,6 +31,7 @@ public class LessonItemModel {
         return itemText;
     }
 
+
     public String getPhrase() {
         return phrase;
     }
