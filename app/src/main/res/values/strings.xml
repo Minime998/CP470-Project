@@ -68,6 +68,8 @@
     <string name="error_loading_user">Error loading user</string>
     <string name="lesson_cover_image">lesson cover image</string>
     <string name="hi">Hi</string>
+    <string name="logout">Logout</string>
+    <string name="about">About</string>
 
 
 </resources>

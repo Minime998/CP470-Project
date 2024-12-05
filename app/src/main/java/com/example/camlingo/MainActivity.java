@@ -121,11 +121,6 @@ public class MainActivity extends AppCompatActivity {
         // Handle action bar item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.settings) {
-            // Handle setting action
-            return true;
-        }
-
         // logout the user when they click logout
         if (id == R.id.logout) {
             FirebaseAuth.getInstance().signOut();
