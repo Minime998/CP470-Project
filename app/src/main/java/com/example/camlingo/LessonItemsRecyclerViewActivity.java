@@ -36,16 +36,22 @@ public class LessonItemsRecyclerViewActivity extends AppCompatActivity {
 
         String lessonDocumentName = getIntent().getStringExtra("documentName");
         String lessonCollection = getIntent().getStringExtra("lessonCollection");
-        String lessonName = getIntent().getStringExtra("lessonName") + ":";
-        lessonName = lessonName.substring(0, 1).toUpperCase() + lessonName.substring(1).toLowerCase();
-        if (lessonDocumentName != null && lessonCollection != null && lessonName != null){
+        String lessonName = getIntent().getStringExtra("lessonName");
+        String lessonNameModified = lessonName;
+        assert lessonName != null;
+        if(!lessonName.equalsIgnoreCase("vocabulary")){
+            assert lessonDocumentName != null;
+            lessonNameModified = lessonNameModified.substring(0, lessonNameModified.length() - 1) + ":";
+        }
+        lessonNameModified = lessonNameModified.substring(0, 1).toUpperCase() + lessonNameModified.substring(1).toLowerCase();
+        if (lessonDocumentName != null && lessonCollection != null){
             fetchLessonData(lessonDocumentName, lessonCollection);
-            Log.i("RecyclerView", "lessonName: " + lessonName);
+            Log.i("RecyclerView", "lessonNameModified: " + lessonNameModified +"  lessonName: " + lessonName);
         }
 
         RecyclerView recyclerView = findViewById(R.id.lessonRecycleView);
 
-        adapter = new LessonItemsRecyclerViewAdapter(this, lessonItemModels, lessonName);
+        adapter = new LessonItemsRecyclerViewAdapter(this, lessonItemModels, lessonNameModified, lessonName);
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

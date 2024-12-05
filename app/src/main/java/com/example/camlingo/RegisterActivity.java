@@ -24,9 +24,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 import java.util.HashMap;
+
+import model.LessonModel;
+import repository.GetLessonListFromFirestore;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -35,6 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText PassWEditText2;
     private SharedPreferences prefs;
     private FirebaseAuth mAuth;
+    ArrayList<LessonModel> lessonModels = new ArrayList<>();
 
     public static String TAG = "RegisterActivity";
 
@@ -68,6 +73,25 @@ public class RegisterActivity extends AppCompatActivity {
         // Initialize Firebase Auth and Firestore
         mAuth = FirebaseAuth.getInstance();
         FirebaseFirestore db = FirebaseFirestore.getInstance("camlingo");
+
+        GetLessonListFromFirestore repository = new GetLessonListFromFirestore();
+        repository.getLessons(new GetLessonListFromFirestore.OnLessonsFetchedListener() {
+            @Override
+            public void onLessonsFetched(ArrayList<LessonModel> lessons) {
+                if (lessons.isEmpty()) {
+                    Log.i("LessonList", "No lessons found!");
+                } else {
+                    for (LessonModel lesson : lessons) {
+                        Log.i("LessonList", "Lesson: " + lesson.toString());
+                        lessonModels.add(lesson);                    }
+                }
+            }
+
+            @Override
+            public void onError(Exception e) {
+                Log.e("LessonList", "Error fetching lessons", e);
+            }
+        });
 
 
         Button loginButton = findViewById(R.id.button_login);
@@ -111,16 +135,19 @@ public class RegisterActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     FirebaseUser user = mAuth.getCurrentUser();
-//                                    Map<String, Integer> progress = new HashMap<>()
+                                    Map<String, Integer> progress = new HashMap<>();
                                     if (user != null) {
+                                        for (LessonModel lesson : lessonModels){
+                                            progress.put(lesson.getLessonName(), 0);
+                                        }
                                         // Create an associated Firestore document for each user
                                         Map<String, Object> userData = new HashMap<>();
                                         userData.put("points", 250); // everyone starts with 250 points
-                                        userData.put("progress", new HashMap<String, Integer>());
+                                        userData.put("progress", progress);
                                         userData.put("streak", 1);
                                         userData.put("username", username);
 
-                                        long currentTimestamp = System.currentTimeMillis()-120000;
+                                        long currentTimestamp = System.currentTimeMillis();
                                         userData.put("lastLogin", currentTimestamp);
 
                                         db.collection("users").document(user.getUid())

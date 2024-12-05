@@ -49,12 +49,9 @@ public class LessonsRecyclerViewAdapter extends RecyclerView.Adapter<LessonsRecy
             Intent intent = new Intent(context, LessonItemsRecyclerViewActivity.class);
             intent.putExtra("lessonCollection",lesson.getLessonCollectionName());
             intent.putExtra("documentName", lesson.getLessonDocumentName());
-            if (lesson.getLessonName().equalsIgnoreCase("vocabulary")){
-                intent.putExtra("lessonName", lesson.getLessonName());
-            }
-            else{
-                intent.putExtra("lessonName", lesson.getLessonName().substring(0, lesson.getLessonName().length() - 1));
-            }
+            intent.putExtra("lessonName", lesson.getLessonName());
+
+
             context.startActivity(intent);
         });
 

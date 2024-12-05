@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
+import model.GlobalUserCache;
 import model.LessonItemModel;
 
 public class LessonItemsRecyclerViewAdapter extends RecyclerView.Adapter<LessonItemsRecyclerViewAdapter.MyViewHolder> {
@@ -23,12 +24,16 @@ public class LessonItemsRecyclerViewAdapter extends RecyclerView.Adapter<LessonI
     Context context;
     ArrayList<LessonItemModel> lessonItemModels;
     private boolean audioPlaying = false;
-    private String lessonName;
+    private final String TAG = "RecyclerViewAdapter";
 
-    public LessonItemsRecyclerViewAdapter(Context context, ArrayList<LessonItemModel> lessonItemModels, String lessonName){
+    private final String lessonName;
+    private final String lessonNameModiefied;
+
+    public LessonItemsRecyclerViewAdapter(Context context, ArrayList<LessonItemModel> lessonItemModels, String lessonNameModified, String lessonName){
         this.context = context;
         this.lessonItemModels = lessonItemModels;
         this.lessonName = lessonName;
+        this.lessonNameModiefied = lessonNameModified;
     }
 
     @NonNull
@@ -52,7 +57,11 @@ public class LessonItemsRecyclerViewAdapter extends RecyclerView.Adapter<LessonI
                 playAudio(lessonItemModels.get(position).getMedia());
             }
         });
-        holder.itemTextLabel.setText(lessonName);
+        holder.itemTextLabel.setText(lessonNameModiefied);
+        holder.checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            int currentProgress = GlobalUserCache.getCurrentUser().getProgress().getOrDefault(lessonName,0);
+            Log.i(TAG, "Lesson: " + lessonName + ", progress: " + currentProgress);
+        });
     }
 
     private void playAudio(String mediaUrl) {
@@ -84,6 +93,7 @@ public class LessonItemsRecyclerViewAdapter extends RecyclerView.Adapter<LessonI
         // grab view from recycler_view_layout layout file
 
         ImageView playAudioBtn;
+        CheckBox checkBox;
         TextView itemText, itemPhrase, itemTextLabel;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -93,6 +103,7 @@ public class LessonItemsRecyclerViewAdapter extends RecyclerView.Adapter<LessonI
             itemText = itemView.findViewById(R.id.item_text);
             itemPhrase = itemView.findViewById(R.id.item_phrase);
             itemTextLabel = itemView.findViewById(R.id.item_text_label);
+            checkBox = itemView.findViewById(R.id.lesson_item_check_box);
 
         }
     }
