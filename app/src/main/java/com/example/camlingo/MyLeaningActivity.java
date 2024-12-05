@@ -64,14 +64,10 @@ public class MyLeaningActivity extends AppCompatActivity {
                 .into(animated_bag);
 
         // Click on english basics card
-        english_basics_card.setOnClickListener(v ->{
-            startActivity(new Intent(MyLeaningActivity.this, LessonsRecyclerViewActivity.class));
-        });
+        english_basics_card.setOnClickListener(v -> startActivity(new Intent(MyLeaningActivity.this, LessonsRecyclerViewActivity.class)));
 
         // Click on picture learning
-        picture_learning_card.setOnClickListener(v -> {
-            startActivity(new Intent(MyLeaningActivity.this, image_upload.class));
-        });
+        picture_learning_card.setOnClickListener(v -> startActivity(new Intent(MyLeaningActivity.this, image_upload.class)));
     }
 
 

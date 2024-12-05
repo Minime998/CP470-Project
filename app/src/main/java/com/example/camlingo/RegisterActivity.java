@@ -23,9 +23,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -37,7 +35,6 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText UsernameEditText;
     private EditText PassWEditText;
     private EditText PassWEditText2;
-    private SharedPreferences prefs;
     private FirebaseAuth mAuth;
     ArrayList<LessonModel> lessonModels = new ArrayList<>();
 
@@ -67,8 +64,6 @@ public class RegisterActivity extends AppCompatActivity {
             return insets;
         });
 
-        // reference parent activity
-        View parentLayout = findViewById(R.id.registerActivity);
 
         // Initialize Firebase Auth and Firestore
         mAuth = FirebaseAuth.getInstance();
@@ -100,7 +95,6 @@ public class RegisterActivity extends AppCompatActivity {
         TextView userEmailText = findViewById(R.id.username_email);
         PassWEditText = findViewById(R.id.password_input);
         PassWEditText2 = findViewById(R.id.password_input2);
-        prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
 
         FormValidator formValidator = new FormValidator();
 
@@ -130,52 +124,49 @@ public class RegisterActivity extends AppCompatActivity {
                 toast.show();
             }else {
                 mAuth.createUserWithEmailAndPassword(email, password1)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    FirebaseUser user = mAuth.getCurrentUser();
-                                    Map<String, Integer> progress = new HashMap<>();
-                                    if (user != null) {
-                                        for (LessonModel lesson : lessonModels){
-                                            progress.put(lesson.getLessonName(), 0);
-                                        }
-                                        // Create an associated Firestore document for each user
-                                        Map<String, Object> userData = new HashMap<>();
-                                        userData.put("points", 250); // everyone starts with 250 points
-                                        userData.put("progress", progress);
-                                        userData.put("streak", 1);
-                                        userData.put("username", username);
-
-                                        long currentTimestamp = System.currentTimeMillis();
-                                        userData.put("lastLogin", currentTimestamp);
-
-                                        db.collection("users").document(user.getUid())
-                                                        .set(userData)
-                                                                .addOnSuccessListener(aVoid -> {
-                                                                    Log.d("Firestore", "User data added successfully!");
-                                                                })
-                                                                .addOnFailureListener(e ->{
-                                                                    Log.d("Firestore", "Error adding user data", e);
-                                                                });
-
-
-                                        Toast.makeText(RegisterActivity.this, "Successfully Registered.",
-                                                Toast.LENGTH_SHORT).show();
-
-                                        // redirect user to login
-                                        // start login activity
-                                        FirebaseAuth.getInstance().signOut();
-                                        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                                        startActivity(intent);
-                                        finish();
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                Map<String, Integer> progress = new HashMap<>();
+                                if (user != null) {
+                                    for (LessonModel lesson : lessonModels){
+                                        progress.put(lesson.getLessonName(), 0);
                                     }
-                                } else {
-                                    // If sign in fails, display a message to the user.
-                                    Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                                    Toast.makeText(RegisterActivity.this, "Authentication failed.",
+                                    // Create an associated Firestore document for each user
+                                    Map<String, Object> userData = new HashMap<>();
+                                    userData.put("points", 250); // everyone starts with 250 points
+                                    userData.put("progress", progress);
+                                    userData.put("streak", 1);
+                                    userData.put("username", username);
+
+                                    long currentTimestamp = System.currentTimeMillis();
+                                    userData.put("lastLogin", currentTimestamp);
+
+                                    db.collection("users").document(user.getUid())
+                                                    .set(userData)
+                                                            .addOnSuccessListener(aVoid -> {
+                                                                Log.d("Firestore", "User data added successfully!");
+                                                            })
+                                                            .addOnFailureListener(e ->{
+                                                                Log.d("Firestore", "Error adding user data", e);
+                                                            });
+
+
+                                    Toast.makeText(RegisterActivity.this, "Successfully Registered.",
                                             Toast.LENGTH_SHORT).show();
+
+                                    // redirect user to login
+                                    // start login activity
+                                    FirebaseAuth.getInstance().signOut();
+                                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                    startActivity(intent);
+                                    finish();
                                 }
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                                Toast.makeText(RegisterActivity.this, "Authentication failed.",
+                                        Toast.LENGTH_SHORT).show();
                             }
                         });
             }

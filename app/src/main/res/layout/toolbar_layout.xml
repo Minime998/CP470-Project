@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/rodin"
-                android:text="Hi"
+                android:text="@string/hi"
                 android:textColor="@color/white"
                 android:textSize="12sp" />
 

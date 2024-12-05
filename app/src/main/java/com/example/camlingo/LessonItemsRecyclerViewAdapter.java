@@ -1,7 +1,6 @@
 package com.example.camlingo;
 
 import android.content.Context;
-import android.content.Intent;
 import android.media.MediaPlayer;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -93,12 +92,8 @@ public class LessonItemsRecyclerViewAdapter extends RecyclerView.Adapter<LessonI
                     .collection(lessonCollection.toLowerCase())
                     .document(lessonItemModel.getItemId())
                     .update("complete", isChecked)
-                    .addOnSuccessListener(aVoid -> {
-                        Log.i(TAG, "Lesson item updated successfully in Firestore.");
-                    })
-                    .addOnFailureListener(e -> {
-                        Log.e(TAG, "Error updating lesson item in Firestore.", e);
-                    });
+                    .addOnSuccessListener(aVoid -> Log.i(TAG, "Lesson item updated successfully in Firestore."))
+                    .addOnFailureListener(e -> Log.e(TAG, "Error updating lesson item in Firestore.", e));
 
             Log.i(TAG, "Lesson Progress is now: " + progress);
             // Update Firestore

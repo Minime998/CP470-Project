@@ -89,9 +89,7 @@ public class LessonItemsRecyclerViewActivity extends AppCompatActivity {
                     }
                     adapter.notifyDataSetChanged();
                 })
-                .addOnFailureListener(e -> {
-                    System.err.println("Error fetching lesson data: " + e.getMessage());
-                });
+                .addOnFailureListener(e -> System.err.println("Error fetching lesson data: " + e.getMessage()));
     }
 
 }

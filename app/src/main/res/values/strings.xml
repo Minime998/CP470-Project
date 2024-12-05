@@ -27,7 +27,7 @@
     <string name="start_quest">Start</string>
     <string name="check_answer">Check</string>
     <string name="got_it">Got it</string>
-    <string name="upload_text">Upload image of...</string>
+    <string name="upload_text">Upload image of…</string>
     <string name="audio_button_desc">Press button to play sound</string>
     <string name="image_desc">Identify the object shown in the image</string>
     <string name="camera_btn_desc">Open camera</string>
@@ -66,6 +66,8 @@
     <string name="verbs_lesson_subtitle">Listen, Read and Repeat</string>
     <string name="prompt_name">Name</string>
     <string name="error_loading_user">Error loading user</string>
+    <string name="lesson_cover_image">lesson cover image</string>
+    <string name="hi">Hi</string>
 
 
 </resources>

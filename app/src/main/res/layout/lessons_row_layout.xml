@@ -45,6 +45,7 @@
                 android:id="@+id/lesson_icon"
                 android:layout_width="220dp"
                 android:layout_height="146dp"
+                android:contentDescription="@string/lesson_cover_image"
                 android:src="@android:mipmap/sym_def_app_icon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

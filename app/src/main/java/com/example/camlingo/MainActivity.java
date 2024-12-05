@@ -95,9 +95,7 @@ public class MainActivity extends AppCompatActivity {
         // Clear default title
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 
-        dailyQuestsCard.setOnClickListener(v -> {
-            startActivity(new Intent(MainActivity.this, DailyQuestActivity.class));
-        });
+        dailyQuestsCard.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, DailyQuestActivity.class)));
 
         // My Learning button click
         myLearningCard.setOnClickListener(v -> {
@@ -107,9 +105,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Leader board card button click
-        leaderboardCard.setOnClickListener(v -> {
-            Toast.makeText(MainActivity.this, "leaderboardCard Clicked", Toast.LENGTH_SHORT).show();
-        });
+        leaderboardCard.setOnClickListener(v -> Toast.makeText(MainActivity.this, "leaderboardCard Clicked", Toast.LENGTH_SHORT).show());
 
     }
 
@@ -145,12 +141,9 @@ public class MainActivity extends AppCompatActivity {
             AlertDialog.Builder customDialogBuilder = new AlertDialog.Builder(this);
             View customView = getLayoutInflater().inflate(R.layout.about_author_dialog, null);
             customDialogBuilder.setView(customView);
-            customDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    // Dismiss the dialog
-                    dialog.dismiss();
-                }
+            customDialogBuilder.setPositiveButton("OK", (dialog, which) -> {
+                // Dismiss the dialog
+                dialog.dismiss();
             });
             AlertDialog aboutDialog = customDialogBuilder.create();
             aboutDialog.show();
