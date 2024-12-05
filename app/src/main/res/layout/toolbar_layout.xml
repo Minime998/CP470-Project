@@ -10,31 +10,80 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/blue_dark"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/CustomPopupMenu"
-        app:contentInsetStart="10dp"
         android:paddingTop="20dp"
         android:paddingBottom="7dp"
-        app:contentInsetEnd="0dp">
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:contentInsetEnd="0dp"
+        app:contentInsetStart="10dp"
+        app:popupTheme="@style/CustomPopupMenu">
 
         <ImageView
             android:id="@+id/toolbar_pfp"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_gravity="start"
+            android:layout_marginStart="15dp"
             android:clickable="true"
             android:contentDescription="@string/my_account_texy"
             android:focusable="true"
             android:src="@drawable/baseline_person_24_white" />
 
-        <TextView
-            android:id="@+id/userName"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/rodin"
-            android:text="@string/john"
-            android:textColor="@color/white"
-            android:textSize="12sp" />
+            android:padding="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/rodin"
+                android:text="Hi"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/userName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/rodin"
+                android:text="@string/john"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:layout_gravity="end"
+            app:cornerRadius="20dp"
+            android:background="@color/blue">
+
+            <TextView
+                android:id="@+id/points"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/rodin"
+                android:text="250"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="10dp"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginEnd="15dp"
+                android:clickable="true"
+                android:contentDescription="@string/my_account_texy"
+                android:focusable="true"
+                android:src="@drawable/coin_icon" />
+        </LinearLayout>
+
 
     </androidx.appcompat.widget.Toolbar>
 

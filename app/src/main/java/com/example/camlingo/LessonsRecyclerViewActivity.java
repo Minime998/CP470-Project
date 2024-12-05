@@ -41,7 +41,7 @@ public class LessonsRecyclerViewActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        refreshUI();
+//        refreshUI();
     }
 
     private void refreshUI(){
